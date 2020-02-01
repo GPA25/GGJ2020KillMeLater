@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    BaseTorso torso = new BaseTorso();
-
-    void Awake()
-    {
-        SpriteRenderer sr = gameObject.AddComponent<SpriteRenderer>() as SpriteRenderer;
-        Texture2D tex = Resources.Load<Texture2D>("Sprites/sprite01");
-        sr.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
-    }
+    HeadPart head;
+    BaseTorso torso;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        head = HeadPart.Create("Test");
+        torso = BaseTorso.Create("Test");
     }
 
     // Update is called once per frame

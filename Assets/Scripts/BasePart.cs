@@ -15,7 +15,13 @@ public class BasePart : MonoBehaviour
 
     public int price = 1;
 
-    public string filePath = "";
+    public string name = "";
 
     public RARITY rarity = RARITY.RARITY_RARE;
+
+    void Start()
+    {
+    }
+
+    virtual public void LoadTexture(){}
 }

@@ -1,10 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class MySceneManager : SingletonTemplate
+public class PlayerData : SingletonTemplate
 {
+    string name;
+    int currency;
+
+    List<BaseTorso> ownedTorsoList;
+    List<ArmPart> ownedArmList;
+    List<LegPart> ownedLegList;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,10 +21,5 @@ public class MySceneManager : SingletonTemplate
     void Update()
     {
         
-    }
-
-    public void LoadScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
     }
 }

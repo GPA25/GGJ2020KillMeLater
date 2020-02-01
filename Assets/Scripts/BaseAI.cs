@@ -11,7 +11,6 @@ public class BaseAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FindTorso();
         StoreOtherAIInList();
     }
 
@@ -25,10 +24,4 @@ public class BaseAI : MonoBehaviour
             l_otherAI.Add(go);
         }
     }
-
-    public void FindTorso()
-    {
-        baseTorso = gameObject.GetComponent<BaseTorso>();
-    }
-
 }
