@@ -18,6 +18,15 @@ public class GachaSystem : MonoBehaviour
 
     [SerializeField]
     private GachaAnimator animator;
+    [SerializeField]
+    private GameObject doneButton;
+
+    [SerializeField]
+    private ParticleSystem particleSystemR;
+    [SerializeField]
+    private ParticleSystem particleSystemSR;
+    [SerializeField]
+    private ParticleSystem particleSystemUR;
 
     [SerializeField]
     private Vector3[] summonPositions;    // for all 10
@@ -26,10 +35,13 @@ public class GachaSystem : MonoBehaviour
     private bool gachaEnded = false;     // start the next gacha
     private bool isSingleSummon = false;
 
+    private List<Transform> tenSummon;  // list for storing parts from ten summon
+
     // Start is called before the first frame update
     void Start()
     {
         Random.InitState((int)System.DateTime.Now.Ticks);
+        tenSummon = new List<Transform>();
     }
 
     // Update is called once per frame
@@ -50,8 +62,28 @@ public class GachaSystem : MonoBehaviour
                 int roll = Random.Range(0, parts.Count);
                 BasePart partGO = BasePart.Create(parts[roll].name);
                 if (!isSingleSummon) {
-                    partGO.transform.position = summonPositions[9 - numSummons];
+                    tenSummon.Add(partGO.transform);
                 }
+                else
+                {
+                }
+                animator.StartSummonSequence(partGO.transform, isSingleSummon);
+                switch (gachaRarity)
+                {
+                    case BasePart.RARITY.RARITY_RARE:
+                        particleSystemR.gameObject.SetActive(true);
+                        particleSystemR.Play();
+                        break;
+                    case BasePart.RARITY.RARITY_SUPER_RARE:
+                        particleSystemSR.gameObject.SetActive(true);
+                        particleSystemSR.Play();
+                        break;
+                    case BasePart.RARITY.RARITY_ULTRA_RARE:
+                        particleSystemUR.gameObject.SetActive(true);
+                        particleSystemUR.Play();
+                        break;
+                }
+
 
                 Debug.Log("Roll: " + parts[roll].name);
 
@@ -59,13 +91,58 @@ public class GachaSystem : MonoBehaviour
             }
             else
             {
+                if (!isSingleSummon)
+                {
+                    tenSummon[9 - numSummons].gameObject.SetActive(false);
+                }
                 gachaEnded = false;
+
+                // turn off particle effects
+                switch (gachaRarity)
+                {
+                    case BasePart.RARITY.RARITY_RARE:
+                        particleSystemR.Stop();
+                        particleSystemR.gameObject.SetActive(false);
+                        break;
+                    case BasePart.RARITY.RARITY_SUPER_RARE:
+                        particleSystemSR.Stop();
+                        particleSystemSR.gameObject.SetActive(false);
+                        break;
+                    case BasePart.RARITY.RARITY_ULTRA_RARE:
+                        particleSystemUR.Stop();
+                        particleSystemUR.gameObject.SetActive(false);
+                        break;
+                }
+
                 Summon();
             }
         }
-        else
+        else if (!isSingleSummon)
         {
-            // Exit scene
+            // show all 10 summons
+            for (int i = 0; i < 10; i++)
+            {
+                tenSummon[i].position = summonPositions[i];
+                tenSummon[i].gameObject.SetActive(true);
+            }
+            doneButton.SetActive(true);
+
+            // turn off particle effects
+            switch (gachaRarity)
+            {
+                case BasePart.RARITY.RARITY_RARE:
+                    particleSystemR.Stop();
+                    particleSystemR.gameObject.SetActive(false);
+                    break;
+                case BasePart.RARITY.RARITY_SUPER_RARE:
+                    particleSystemSR.Stop();
+                    particleSystemSR.gameObject.SetActive(false);
+                    break;
+                case BasePart.RARITY.RARITY_ULTRA_RARE:
+                    particleSystemUR.Stop();
+                    particleSystemUR.gameObject.SetActive(false);
+                    break;
+            }
         }
     }
 

@@ -27,6 +27,9 @@ public class GachaAnimator : MonoBehaviour
     private Transform zoomPoint;
 
     [SerializeField]
+    private GameObject doneButton;
+
+    [SerializeField]
     private GameObject gachaButton;
 
     private Vector3 initialPanelScale;
@@ -39,6 +42,7 @@ public class GachaAnimator : MonoBehaviour
         panelSR.SetActive(false);
         panelUR.SetActive(false);
         gachaButton.SetActive(false);
+        doneButton.SetActive(false);
 
         currentPanel = initialBackground.transform;
         initialPanelScale = panelR.transform.localScale;
@@ -126,5 +130,31 @@ public class GachaAnimator : MonoBehaviour
         }
 
         gachaButton.SetActive(true);
+    }
+
+    public void StartSummonSequence(Transform summonedPart, bool isSingleSummon)
+    {
+        StartCoroutine(SummonAnimation(summonedPart, isSingleSummon));
+    }
+
+    private IEnumerator SummonAnimation(Transform part, bool isSingleSummon)
+    {
+        gachaButton.SetActive(false);
+        part.position -= new Vector3(0f, 10f, 0f);
+
+        float moveSpeed = 5f;
+        while (part.position.y < 0f)
+        {
+            part.position += Time.deltaTime * moveSpeed * Vector3.up;
+            yield return null;
+        }
+        part.position = Vector3.zero;
+
+        yield return new WaitForSeconds(1.5f);
+
+        if (isSingleSummon)
+            doneButton.SetActive(true);
+        else
+            gachaButton.SetActive(true);
     }
 }
