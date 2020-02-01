@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class IdleState : BaseState
 {
-    public override void Init()
+    public IdleState(GameObject _attachedObject = null)
     {
-        stateEnd = false;
+        attachedObject = _attachedObject;
     }
 
-    public override void Update()
+    public override void Init()
+    {
+        stateEnd = true;
+    }
+
+    public override void Update(float _dt)
     {
         stateEnd = true;
     }
