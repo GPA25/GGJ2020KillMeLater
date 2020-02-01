@@ -2,23 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseState : MonoBehaviour
+public abstract class BaseState
 {
-    protected bool stateEnd = false;
+    protected bool stateEnd;
 
-    // Start is called before the first frame update
-    void Start()
+    public virtual void Init()
     {
-        
+        stateEnd = false;
+    }
+    
+    public virtual void Update() 
+    { 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    protected virtual void OnEnd() 
+    public virtual void OnEnd() 
     {
         stateEnd = true;
     }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BaseAI : MonoBehaviour
 {
-    public BaseTorso baseTorso;
     public BaseState currentState;
 
     public List<BaseAI> l_otherAI;

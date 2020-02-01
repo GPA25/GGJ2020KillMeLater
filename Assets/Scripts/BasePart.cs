@@ -13,6 +13,9 @@ public class BasePart : MonoBehaviour
         TOTAL
     }
 
-    public RARITY rarity = RARITY.RARITY_RARE;
     public int price = 1;
+
+    public string filePath = "";
+
+    public RARITY rarity = RARITY.RARITY_RARE;
 }
