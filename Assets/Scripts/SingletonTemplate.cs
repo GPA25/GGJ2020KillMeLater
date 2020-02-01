@@ -1,47 +1,66 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SingletonTemplate : MonoBehaviour {
 
-	/// Static instance of Singleton Class which allows it to be accessed by any other script
-	private static SingletonTemplate _instance = null;
-	
-	/// <summary>
-	/// Gets the instance of the Singleton Class
-	/// If there is not an instance, Singleton Class will generate a gameObject "MySingletonClass" in current scene.
-	/// The instance game object will not be destroyed when load new scene.
-	/// </summary>
-	/// <value>The instance in the scene.</value>
-	public static SingletonTemplate Instance {
-		get {
-			if (!_instance) {
-				_instance = FindObjectOfType(typeof(SingletonTemplate)) as SingletonTemplate;
-				
-				if (!_instance) {
-					var obj = new GameObject("SingletonTemplate");
-					_instance = obj.AddComponent<SingletonTemplate>();
-				} else {
-					_instance.gameObject.name = "SingletonTemplate";
-				}
-			}
-			return _instance;
-		}
-	}
-	
-	/// <summary>
-	/// Awake is called when the script instance is being loaded.
-	/// Awake is used to initialize any variables or game state before the game starts.
-	/// Awake is called only once during the lifetime of the script instance.
-	/// </summary>
-	void Awake() {
-		if (_instance == null) {
-			_instance = this;
-			// Sets this to not be destroyed when reloading scene
-			DontDestroyOnLoad(_instance.gameObject);
-		} else if (_instance != this) {
-			// If there's any other object exist of this type delete it
-			// as it's breaking our singleton pattern
-			Destroy(gameObject);
-		}
-	}
+/// <summary>
+/// Inherit from this base class to create a SingletonTemplate.
+/// e.g. public class MyClassName : SingletonTemplate<MyClassName> {}
+/// </summary>
+public class SingletonTemplate<T> : MonoBehaviour where T : MonoBehaviour
+{
+    // Check to see if we're about to be destroyed.
+    private static bool m_ShuttingDown = false;
+    private static object m_Lock = new object();
+    private static T m_Instance;
+ 
+    /// <summary>
+    /// Access SingletonTemplate instance through this propriety.
+    /// </summary>
+    public static T Instance
+    {
+        get
+        {
+            if (m_ShuttingDown)
+            {
+                Debug.LogWarning("[SingletonTemplate] Instance '" + typeof(T) +
+                    "' already destroyed. Returning null.");
+                return null;
+            }
+ 
+            lock (m_Lock)
+            {
+                if (m_Instance == null)
+                {
+                    // Search for existing instance.
+                    m_Instance = (T)FindObjectOfType(typeof(T));
+ 
+                    // Create new instance if one doesn't already exist.
+                    if (m_Instance == null)
+                    {
+                        // Need to create a new GameObject to attach the SingletonTemplate to.
+                        var SingletonTemplateObject = new GameObject();
+                        m_Instance = SingletonTemplateObject.AddComponent<T>();
+                        SingletonTemplateObject.name = typeof(T).ToString() + " (SingletonTemplate)";
+ 
+                        // Make instance persistent.
+                        DontDestroyOnLoad(SingletonTemplateObject);
+                    }
+                }
+ 
+                return m_Instance;
+            }
+        }
+    }
+ 
+ 
+    private void OnApplicationQuit()
+    {
+        m_ShuttingDown = true;
+    }
+ 
+ 
+    private void OnDestroy()
+    {
+        m_ShuttingDown = true;
+    }
 }

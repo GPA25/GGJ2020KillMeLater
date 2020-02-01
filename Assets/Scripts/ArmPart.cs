@@ -24,16 +24,4 @@ public class ArmPart : BasePart
         Texture2D tex = Resources.Load<Texture2D>("Textures/character_Arm_" + name);
         this.GetComponent<SpriteRenderer>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.95f), 512);
     }
-
-    public static ArmPart Create(string name)
-    {
-        GameObject go = new GameObject();
-        go.name = name;
-        go.AddComponent<SpriteRenderer>();
-        go.AddComponent<ArmPart>();
-        go.GetComponent<ArmPart>().name = name;
-        go.GetComponent<ArmPart>().LoadTexture();
-
-        return go.GetComponent<ArmPart>();
-    }
 }

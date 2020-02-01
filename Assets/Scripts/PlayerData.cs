@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerData : SingletonTemplate
+public class PlayerData : SingletonTemplate<PlayerData>
 {
     string name;
     int currency;

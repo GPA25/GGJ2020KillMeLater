@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MySceneManager : SingletonTemplate
+public class MySceneManager : SingletonTemplate<MySceneManager>
 {
     // Start is called before the first frame update
     void Start()
