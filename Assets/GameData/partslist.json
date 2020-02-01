@@ -103,6 +103,28 @@
       "flavorText": "Walks like Rihanna.",
       "partType": 3,
       "moveSpeed": 15.0
+    },
+    {
+      "name": "Minecraft Arm",
+      "fileName": "Arm/minecraft arm.png",
+      "price": 50,
+      "rarity": 0,
+      "flavorText": "Minecraft was too overrated.",
+      "partType": 2,
+      "damage": 2,
+      "windupTime": 0.2,
+      "attackSpeed": 1.3,
+      "recoveryTime": 0.5,
+      "armAttackDelay": 2.0
+    },
+    {
+      "name": "Cat",
+      "fileName": "Head/jonathon from hr.png",
+      "price": 200,
+      "rarity": 1,
+      "flavorText": "A cat from Cats.",
+      "partType": 3,
+      "moveSpeed": 15.0
     }
   ]
 }
