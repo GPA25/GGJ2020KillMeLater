@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerData : SingletonTemplate<PlayerData>
 {
-    string name;
-    int currency;
+    public string name;
+    public int currency;
 
-    string currentlyEquippedHead;
-    string currentlyEquippedTorso;
-    string[] currentlyEquippedLimbs;
+    public string equippedHead;
+    public string equippedTorso;
+    public string equippedLeftArm;
+    public string equippedRightArm;
+    public string equippedLeftLeg;
+    public string equippedRightLeg;
 
     List<BaseTorso> ownedTorsoList;
     List<ArmPart> ownedArmList;
@@ -26,25 +29,4 @@ public class PlayerData : SingletonTemplate<PlayerData>
     {
         
     }
-
-    // public void SaveBody()
-    // {
-    //     PlayerPrefs.SetString("head", currentlyEquippedHead);
-    //     PlayerPrefs.SetString("torso", currentlyEquippedTorso);
-    //     for(int i = 0; i < currentlyEquippedLimbs.Count; ++i)
-    //     {
-    //         PlayerPrefs.SetString("limb" + i, currentlyEquippedLimbs[i]);
-    //     }
-    // }
-    // public void LoadBody()
-    // {
-    //     currentlyEquippedHead = PlayerPrefs.GetString("head", "");
-    //     currentlyEquippedTorso = PlayerPrefs.GetString("torso", "");
-
-    //     currentlyEquippedLimbs.Clear();
-    //     for(int i = 0; i < currentlyEquippedLimbs.Count; ++i)
-    //     {
-    //         PlayerPrefs.GetString("limb" + i, currentlyEquippedLimbs[i]);
-    //     }
-    // }
 }

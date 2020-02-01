@@ -11,7 +11,7 @@ public class SingletonTemplate<T> : MonoBehaviour where T : MonoBehaviour
     // Check to see if we're about to be destroyed.
     private static bool m_ShuttingDown = false;
     private static object m_Lock = new object();
-    private static T m_Instance;
+    private static T instance;
  
     /// <summary>
     /// Access SingletonTemplate instance through this propriety.
@@ -29,17 +29,17 @@ public class SingletonTemplate<T> : MonoBehaviour where T : MonoBehaviour
  
             lock (m_Lock)
             {
-                if (m_Instance == null)
+                if (instance == null)
                 {
                     // Search for existing instance.
-                    m_Instance = (T)FindObjectOfType(typeof(T));
+                    instance = (T)FindObjectOfType(typeof(T));
  
                     // Create new instance if one doesn't already exist.
-                    if (m_Instance == null)
+                    if (instance == null)
                     {
                         // Need to create a new GameObject to attach the SingletonTemplate to.
                         var SingletonTemplateObject = new GameObject();
-                        m_Instance = SingletonTemplateObject.AddComponent<T>();
+                        instance = SingletonTemplateObject.AddComponent<T>();
                         SingletonTemplateObject.name = typeof(T).ToString() + " (SingletonTemplate)";
  
                         // Make instance persistent.
@@ -47,7 +47,7 @@ public class SingletonTemplate<T> : MonoBehaviour where T : MonoBehaviour
                     }
                 }
  
-                return m_Instance;
+                return instance;
             }
         }
     }

@@ -12,11 +12,19 @@ public class CustomizationManager : MonoBehaviour
     public Transform torsoContentDisplay;
     public Transform limbsContentDisplay;
 
+    public Transform headSlot;
+    public Transform torsoSlot;
+    public Transform leftArmSlot;
+    public Transform rightArmSlot;
+    public Transform leftLegSlot;
+    public Transform rightLegSlot;
+
     public List<HeadPart> headList = new List<HeadPart>();
     public List<BaseTorso> torsoList = new List<BaseTorso>();
     public List<BasePart> limbList = new List<BasePart>();
 
-    BasePart selectedPart;
+    string selectedFromInventory;
+    string selectedFromEquipped;
 
     // Start is called before the first frame update
     void Start()
@@ -36,15 +44,25 @@ public class CustomizationManager : MonoBehaviour
         
     }
 
+    public void SelectFromInventory(string partName)
+    {
+        selectedFromInventory = partName;
+    }
+    public void SelectFromEquipped(GameObject go)
+    {
+        selectedFromEquipped = go.transform.GetChild(0).name;
+    }
+
     void LoadAllItems()
     {
         List<PartData> partDataList = PartsTable.instance.GetPartsByType(BasePart.LIMB_TYPE.LIMB_END);
-        Debug.Log(partDataList.Count);
+        
         foreach(PartData data in partDataList)
         {
             GameObject go = new GameObject(); //Create the GameObject
             go.name = data.name;
-            go.AddComponent<Button>();
+            Button btn = go.AddComponent<Button>();
+            btn.onClick.AddListener(() => SelectFromInventory(go.name));
             Image img = go.AddComponent<Image>(); //Add the Image Component script
             Texture2D tex = Resources.Load<Texture2D>("Textures/" + data.fileName);
             img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 1000);

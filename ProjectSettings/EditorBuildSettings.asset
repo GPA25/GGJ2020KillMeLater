@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/SplashScreenScene.unity
+    guid: de75861157b18bb4fb05b7b5ebe42afb
+  - enabled: 1
+    path: Assets/Scenes/SignUpScene.unity
+    guid: 21e5c131c1d72f541bc080e50476e90d
+  - enabled: 1
+    path: Assets/Scenes/MainMenuScene.unity
+    guid: 104d08ae0df42b24197687ea19920484
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -20,13 +29,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InventoryScene.unity
     guid: 7a8a2620b7aef634085652d836a11ca3
-  - enabled: 1
-    path: Assets/Scenes/MainMenuScene.unity
-    guid: 104d08ae0df42b24197687ea19920484
-  - enabled: 1
-    path: Assets/Scenes/SignUpScene.unity
-    guid: 21e5c131c1d72f541bc080e50476e90d
-  - enabled: 1
-    path: Assets/Scenes/SplashScreenScene.unity
-    guid: de75861157b18bb4fb05b7b5ebe42afb
   m_configObjects: {}
