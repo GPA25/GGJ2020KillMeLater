@@ -13,16 +13,16 @@ public class Character : MonoBehaviour
     void Start()
     {
         torso.GetComponent<SpriteRenderer>().sortingOrder = 10;
-        l_AttachedLimbs[1].transform.Rotate(0, 0, -35, 0);
-        head.transform.parent = torso.transform;
-        head.GetComponent<SpriteRenderer>().sortingOrder = (int)(torso.l_LimbPosition[0].z);
-        head.transform.localPosition = torso.l_LimbPosition[0];
+        head.GetComponent<SpriteRenderer>().sortingOrder = (int)(torso.l_LimbPosition[0].transform.position.z);
+        
+        head.transform.parent = torso.l_LimbPosition[0].transform;
+        head.transform.localPosition = Vector3.zero;
         
         for(int i = 0; i+1 < torso.l_LimbPosition.Count && i < l_AttachedLimbs.Count; ++i)
         {
-            l_AttachedLimbs[i].transform.parent = torso.transform;
-            l_AttachedLimbs[i].transform.localPosition = torso.l_LimbPosition[i+1];
-            l_AttachedLimbs[i].GetComponent<SpriteRenderer>().sortingOrder = (int)(torso.l_LimbPosition[i+1].z);
+            l_AttachedLimbs[i].transform.parent = torso.l_LimbPosition[i+1].transform;
+            l_AttachedLimbs[i].transform.localPosition = Vector3.zero;
+            l_AttachedLimbs[i].GetComponent<SpriteRenderer>().sortingOrder = (int)(torso.l_LimbPosition[i+1].transform.position.z);
         }
     }
 
