@@ -36,6 +36,8 @@ public class CustomizationManager : MonoBehaviour
         Character charac = go.GetComponent<Character>();
 
         LoadAllItems();
+        
+        LoadEquippedItems();
     }
 
     // Update is called once per frame
@@ -65,7 +67,7 @@ public class CustomizationManager : MonoBehaviour
             btn.onClick.AddListener(() => SelectFromInventory(go.name));
             Image img = go.AddComponent<Image>(); //Add the Image Component script
             Texture2D tex = Resources.Load<Texture2D>("Textures/" + data.fileName);
-            img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 1000);
+            img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
             go.SetActive(true); //Activate the GameObject
             switch((BasePart.LIMB_TYPE)(data.partType))
             {
@@ -87,5 +89,20 @@ public class CustomizationManager : MonoBehaviour
             }
             go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         }
+    }
+
+    void LoadEquippedItems()
+    {
+        PlayerData.instance.equippedHead = "Fish Head";
+        PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equippedHead);
+        GameObject go = new GameObject(); //Create the GameObject
+        go.name = data.name;
+        Button btn = go.AddComponent<Button>();
+        btn.onClick.AddListener(() => SelectFromInventory(go.name));
+        Image img = go.AddComponent<Image>(); //Add the Image Component script
+        Texture2D tex = Resources.Load<Texture2D>("Textures/" + data.fileName);
+        img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+        go.SetActive(true); //Activate the GameObject
+        go.GetComponent<RectTransform>().SetParent(headSlot);
     }
 }

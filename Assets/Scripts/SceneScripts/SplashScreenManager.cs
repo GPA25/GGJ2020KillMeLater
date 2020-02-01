@@ -10,20 +10,6 @@ public class SplashScreenManager : MonoBehaviour
         string s = PlayerPrefs.GetString("name", "");
         if(s == "")
         {
-            PlayerData.Instance.equippedHead = "TestHead";
-            PlayerData.Instance.equippedTorso = "TestTorso";
-            PlayerData.Instance.equippedLeftArm = "TestArm";
-            PlayerData.Instance.equippedRightArm = "TestArm";
-            PlayerData.Instance.equippedLeftLeg = "TestLeg";
-            PlayerData.Instance.equippedRightLeg = "TestLeg";
-
-            PlayerPrefs.SetString("equippedHead", "TestHead");
-            PlayerPrefs.SetString("equippedTorso", "TestTorso");
-            PlayerPrefs.SetString("equippedLeftArm", "TestArm");
-            PlayerPrefs.SetString("equippedRightArm", "TestArm");
-            PlayerPrefs.SetString("equippedLeftLeg", "TestLeg");
-            PlayerPrefs.SetString("equippedRightLeg", "TestLeg");
-
             MySceneManager.Instance.LoadScene("SignUpScene");
         }
         else

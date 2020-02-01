@@ -28,6 +28,8 @@ public class PartsTable : MonoBehaviour
         }
         partsTable = new Dictionary<string, PartData>();
 
+        DontDestroyOnLoad(this);
+
         InitPartsList();
     }
 

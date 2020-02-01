@@ -2,8 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerData : SingletonTemplate<PlayerData>
+public class PlayerData : MonoBehaviour
 {
+    public static PlayerData instance = null;
+    public static PlayerData Instance
+    {
+        get { return instance; }
+    }
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+        {
+            Debug.Log(string.Format("Instance of PartsTable already exists! Deleting PartsTable script in %s.", gameObject.name));
+            Destroy(this);
+        }
+        
+        DontDestroyOnLoad(this);
+
+        name = PlayerPrefs.GetString("name");
+        currency = PlayerPrefs.GetInt("currency");
+
+        equippedHead = PlayerPrefs.GetString("equippedHead");
+        equippedTorso = PlayerPrefs.GetString("equippedTorso");
+        equippedLeftArm = PlayerPrefs.GetString("equippedLeftArm");
+        equippedRightArm = PlayerPrefs.GetString("equippedRightArm");
+        equippedLeftLeg = PlayerPrefs.GetString("equippedLeftLeg");
+        equippedRightLeg = PlayerPrefs.GetString("equippedRightLeg");
+    }
+
     public string name;
     public int currency;
 
