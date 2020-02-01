@@ -7,6 +7,10 @@ public class PlayerData : SingletonTemplate<PlayerData>
     string name;
     int currency;
 
+    string currentlyEquippedHead;
+    string currentlyEquippedTorso;
+    string[] currentlyEquippedLimbs;
+
     List<BaseTorso> ownedTorsoList;
     List<ArmPart> ownedArmList;
     List<LegPart> ownedLegList;
@@ -22,4 +26,25 @@ public class PlayerData : SingletonTemplate<PlayerData>
     {
         
     }
+
+    // public void SaveBody()
+    // {
+    //     PlayerPrefs.SetString("head", currentlyEquippedHead);
+    //     PlayerPrefs.SetString("torso", currentlyEquippedTorso);
+    //     for(int i = 0; i < currentlyEquippedLimbs.Count; ++i)
+    //     {
+    //         PlayerPrefs.SetString("limb" + i, currentlyEquippedLimbs[i]);
+    //     }
+    // }
+    // public void LoadBody()
+    // {
+    //     currentlyEquippedHead = PlayerPrefs.GetString("head", "");
+    //     currentlyEquippedTorso = PlayerPrefs.GetString("torso", "");
+
+    //     currentlyEquippedLimbs.Clear();
+    //     for(int i = 0; i < currentlyEquippedLimbs.Count; ++i)
+    //     {
+    //         PlayerPrefs.GetString("limb" + i, currentlyEquippedLimbs[i]);
+    //     }
+    // }
 }

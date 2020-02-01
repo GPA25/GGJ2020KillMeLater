@@ -32,15 +32,15 @@ public class BasePart : MonoBehaviour
 
     public LIMB_TYPE limbType = LIMB_TYPE.LIMB_END;
 
-    virtual public void LoadTexture(string filename){}
+    public virtual void LoadTexture(string filename){}
 
-    public static BasePart Create(string name, LIMB_TYPE limbType)
+    public static BasePart Create(string name)
     {
         GameObject go = new GameObject();
 
         PartData partData = PartsTable.Instance.GetPartData(name);
 
-        switch(limbType)
+        switch(((LIMB_TYPE)(partData.partType)))
         {
             case LIMB_TYPE.LIMB_HEAD:
                 go.name = name;

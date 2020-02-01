@@ -239,12 +239,6 @@ MonoBehaviour:
   damageMult: 1
   atkSpdMult: 1
   atkDelay: 1
-  l_LimbPosition:
-  - {fileID: 8084039398843004391}
-  - {fileID: 5848401375453003986}
-  - {fileID: 6765944549304698864}
-  - {fileID: 606038386604684021}
-  - {fileID: 5876386318328245929}
 --- !u!1 &4430550733009937351
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +337,11 @@ MonoBehaviour:
   flavourText: 
   rarity: 0
   limbType: 4
+  damage: 1
+  windUpTime: 1
+  attackSpeed: 1
+  recoveryTime: 1
+  attackDelay: 1
 --- !u!1 &5843273462571735084
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,6 +731,11 @@ MonoBehaviour:
   flavourText: 
   rarity: 0
   limbType: 4
+  damage: 1
+  windUpTime: 1
+  attackSpeed: 1
+  recoveryTime: 1
+  attackDelay: 1
 --- !u!1 &8084039398843004391
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,6 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d384206486e7209439cd5c2c88b4ea83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 8851710608856841871}
   head: {fileID: 7426640023363053352}
   torso: {fileID: 7584914388609379360}
   l_AttachedLimbs:

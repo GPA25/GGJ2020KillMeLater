@@ -48,7 +48,7 @@ public class GachaSystem : MonoBehaviour
 
                 List<PartData> parts = PartsTable.Instance.GetPartsByRarity(gachaRarity);
                 int roll = Random.Range(0, parts.Count);
-                BasePart partGO = BasePart.Create(parts[roll].name, (BasePart.LIMB_TYPE)(parts[roll].partType));
+                BasePart partGO = BasePart.Create(parts[roll].name);
                 if (!isSingleSummon) {
                     partGO.transform.position = summonPositions[9 - numSummons];
                 }

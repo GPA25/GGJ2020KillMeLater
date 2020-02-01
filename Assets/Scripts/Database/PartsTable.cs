@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PartsTable : MonoBehaviour
 {
+
     public static PartsTable instance = null;
     public static PartsTable Instance
     {
@@ -69,7 +70,7 @@ public class PartsTable : MonoBehaviour
         foreach (var key in partsTable.Keys)
         {
             PartData part = partsTable[key];
-            if (part.partType == 4) // any part type
+            if (type == BasePart.LIMB_TYPE.LIMB_END) // any part type
             {
                 partsList.Add(part);
             }

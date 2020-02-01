@@ -12,18 +12,6 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // torso.GetComponent<SpriteRenderer>().sortingOrder = 10;
-        // head.GetComponent<SpriteRenderer>().sortingOrder = (int)(torso.l_LimbPosition[0].transform.position.z);
-        
-        // head.transform.parent = torso.l_LimbPosition[0].transform;
-        // head.transform.localPosition = Vector3.zero;
-        
-        // for(int i = 0; i+1 < torso.l_LimbPosition.Count && i < l_AttachedLimbs.Count; ++i)
-        // {
-        //     l_AttachedLimbs[i].transform.parent = torso.l_LimbPosition[i+1].transform;
-        //     l_AttachedLimbs[i].transform.localPosition = Vector3.zero;
-        //     l_AttachedLimbs[i].GetComponent<SpriteRenderer>().sortingOrder = (int)(torso.l_LimbPosition[i+1].transform.position.z);
-        // }
     }
 
     // Update is called once per frame
@@ -32,20 +20,14 @@ public class Character : MonoBehaviour
         
     }
 
-    public static Character Create(string head, string torso, string[] limbNameArray, BasePart.LIMB_TYPE[] limbTypeArray)
+    public void Init(string _head, string _torso, string[] limbNameArray)
     {
-        GameObject go = new GameObject();
-        Character charac = go.AddComponent<Character>();
+        head.LoadTexture(_head);
+        torso.LoadTexture(_torso);
 
-        charac.head = (HeadPart)(BasePart.Create(head, BasePart.LIMB_TYPE.LIMB_HEAD));
-        charac.torso = (BaseTorso)(BasePart.Create(torso, BasePart.LIMB_TYPE.LIMB_TORSO));
-        for(int i = 0; i < limbNameArray.Length && i < limbTypeArray.Length; ++i)
+        for(int i = 0; i < limbNameArray.Length; ++i)
         {
-            charac.l_AttachedLimbs.Add(BasePart.Create(limbNameArray[i], limbTypeArray[i]));
+            l_AttachedLimbs[i].LoadTexture(limbNameArray[i]);
         }
-
-        charac.torso.transform.parent = charac.transform;
-
-        return charac;
     }
 }
