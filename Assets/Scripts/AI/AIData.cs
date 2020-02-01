@@ -79,25 +79,4 @@ public class AIData
         return avgPos /= numberOfEnemies;
     }
 
-    public float GetMovementSpeed(GameObject _go)
-    {
-        float movementSpeed = 1.0f;
-
-        int numLegs = 0;
-
-        foreach (LegPart go in _go.GetComponents<LegPart>())
-        {
-            movementSpeed += go.moveSpd;
-            ++numLegs;
-        }
-
-        BaseTorso torso = _go.GetComponent<BaseTorso>();
-
-        if (torso && numLegs >= 2)
-            return movementSpeed / numLegs * torso.movespdMult;
-        else
-        {
-            return 1;
-        }
-    }
 }

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class LegPart : BasePart
 {
-    // ASH WHY GOT 2
-    public float moveSpeed = 1.0f;
+    public float moveSpd = 1.0f;
 
     override public void LoadTexture(string filename)
     {
@@ -26,8 +25,4 @@ public class LegPart : BasePart
 
         return go.GetComponent<LegPart>();
     }
-    
-    // ASH WHY GOT 2
-    public float moveSpd = 1.0f;
-
 }

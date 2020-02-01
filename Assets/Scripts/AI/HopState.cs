@@ -13,7 +13,7 @@ public class HopState : BaseState
     public override void Init()
     {
         target = AIData.Instance.GetNearestTarget(attachedObject);
-        movementSpeed = AIData.Instance.GetMovementSpeed(attachedObject);
+        movementSpeed = GetMovementSpeed();
 
         stateEnd = false;
     }
