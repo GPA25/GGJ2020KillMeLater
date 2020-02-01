@@ -1,0 +1,108 @@
+{
+  "data": [
+    {
+      "name": "Muscle",
+      "fileName": "Arm/muscle.png",
+      "price": 10,
+      "rarity": 1,
+      "flavorText": "Macho man",
+      "partType": 2,
+      "damage": 12,
+      "windupTime": 0.8,
+      "attackSpeed": 1.4,
+      "recoveryTime": 1.0,
+      "armAttackDelay": 2.0
+    },
+    {
+      "name": "Skelebone",
+      "fileName": "Arm/skele arm.png",
+      "price": 5,
+      "rarity": 1,
+      "flavorText": "A skeleton that survived decomposition.",
+      "partType": 2,
+      "damage": 10,
+      "windupTime": 0.4,
+      "attackSpeed": 1.1,
+      "recoveryTime": 0.3,
+      "armAttackDelay": 1.8
+    },
+    {
+      "name": "Stump",
+      "fileName": "Arm/stump.png",
+      "price": 2,
+      "rarity": 0,
+      "flavorText": "A stump.",
+      "partType": 2,
+      "damage": 4,
+      "windupTime": 0.5,
+      "attackSpeed": 0.8,
+      "recoveryTime": 0.2,
+      "armAttackDelay": 1.5
+    },
+    {
+      "name": "Zombie Arm",
+      "fileName": "Arm/zombie arm.png",
+      "price": 2,
+      "rarity": 0,
+      "flavorText": "An arm that is currently undergoing decomposition.",
+      "partType": 2,
+      "damage": 6,
+      "windupTime": 0.1,
+      "attackSpeed": 1.0,
+      "recoveryTime": 0.5,
+      "armAttackDelay": 2.0
+    },
+    {
+      "name": "Fish Head",
+      "fileName": "Head/fish.png",
+      "price": 2,
+      "rarity": 2,
+      "flavorText": "Fish.",
+      "partType": 0
+    },
+    {
+      "name": "Takoyaki Head",
+      "fileName": "Head/octo.png",
+      "price": 2,
+      "rarity": 2,
+      "flavorText": "An edible octopus.",
+      "partType": 0
+    },
+    {
+      "name": "Banana Leg",
+      "fileName": "Leg/banana.png",
+      "price": 500,
+      "rarity": 2,
+      "flavorText": "A rare banana.",
+      "partType": 3,
+      "moveSpeed": 8.0
+    },
+    {
+      "name": "Chicken Leg",
+      "fileName": "Leg/chicken.png",
+      "price": 500,
+      "rarity": 2,
+      "flavorText": "Used to get lots of chicks back in the day.",
+      "partType": 3,
+      "moveSpeed": 12.0
+    },
+    {
+      "name": "Knee Socks",
+      "fileName": "Leg/knee sox.png",
+      "price": 120,
+      "rarity": 1,
+      "flavorText": "High socks.",
+      "partType": 3,
+      "moveSpeed": 10.0
+    },
+    {
+      "name": "Stockings",
+      "fileName": "Leg/stockin.png",
+      "price": 200,
+      "rarity": 1,
+      "flavorText": "Walks like Rihanna.",
+      "partType": 3,
+      "moveSpeed": 15.0
+    }
+  ]
+}
