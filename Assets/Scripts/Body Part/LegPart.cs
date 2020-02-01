@@ -9,7 +9,7 @@ public class LegPart : BasePart
 
     override public void LoadTexture()
     {
-        Texture2D tex = Resources.Load<Texture2D>("Textures/character_Leg_" + name);
+        Texture2D tex = Resources.Load<Texture2D>("Textures/Leg/" + name);
         this.GetComponent<SpriteRenderer>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.95f), 512);
     }
 

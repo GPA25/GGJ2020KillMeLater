@@ -6,7 +6,7 @@ public class HeadPart : BasePart
 {
     override public void LoadTexture()
     {
-        Texture2D tex = Resources.Load<Texture2D>("Textures/character_Head_" + name);
+        Texture2D tex = Resources.Load<Texture2D>("Textures/Head/" + name);
         this.GetComponent<SpriteRenderer>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.05f), 512);
     }
 }

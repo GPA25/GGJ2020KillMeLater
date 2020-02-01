@@ -44,6 +44,8 @@ public class Character : MonoBehaviour
             charac.l_AttachedLimbs.Add(BasePart.Create(limbNameArray[i], limbTypeArray[i]));
         }
 
+        charac.torso.transform.parent = charac.transform;
+
         return charac;
     }
 }

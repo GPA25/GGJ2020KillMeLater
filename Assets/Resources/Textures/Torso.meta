@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: cf186f9b8d13a754ba185196b588e19b
-=======
-guid: 0e1ea5b9b3d34754baf0bcfd11304d42
->>>>>>> Fixed Texture Loading
+guid: 50bad2c42b9357d43a70ca5e479f0f5b
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
