@@ -26,6 +26,8 @@ public class GachaAnimator : MonoBehaviour
     [SerializeField]
     private Transform zoomPoint;
 
+    [SerializeField]
+    private GameObject gachaButton;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,7 @@ public class GachaAnimator : MonoBehaviour
         panelR.SetActive(false);
         panelSR.SetActive(false);
         panelUR.SetActive(false);
+        gachaButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -107,5 +110,7 @@ public class GachaAnimator : MonoBehaviour
             panelToShow.localScale = new Vector3(panelScale, panelScale, panelScale);
             yield return null;
         }
+
+        gachaButton.SetActive(true);
     }
 }

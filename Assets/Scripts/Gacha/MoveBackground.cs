@@ -37,6 +37,7 @@ public class MoveBackground : MonoBehaviour
     private IEnumerator MoveCoroutine()
     {
         moveDir = DIR.Right;
+
         while (true)
         {
             switch (moveDir)

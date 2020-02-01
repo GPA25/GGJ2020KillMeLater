@@ -2,7 +2,7 @@
   "data": [
     {
       "name": "Muscle",
-      "fileName": "Arm/muscle.png",
+      "fileName": "Arm/muscle",
       "price": 10,
       "rarity": 1,
       "flavorText": "Macho man",
@@ -15,7 +15,7 @@
     },
     {
       "name": "Skelebone",
-      "fileName": "Arm/skele arm.png",
+      "fileName": "Arm/skele arm",
       "price": 5,
       "rarity": 1,
       "flavorText": "A skeleton that survived decomposition.",
@@ -28,7 +28,7 @@
     },
     {
       "name": "Stump",
-      "fileName": "Arm/stump.png",
+      "fileName": "Arm/stump",
       "price": 2,
       "rarity": 0,
       "flavorText": "A stump.",
@@ -41,7 +41,7 @@
     },
     {
       "name": "Zombie Arm",
-      "fileName": "Arm/zombie arm.png",
+      "fileName": "Arm/zombie arm",
       "price": 2,
       "rarity": 0,
       "flavorText": "An arm that is currently undergoing decomposition.",
@@ -54,7 +54,7 @@
     },
     {
       "name": "Fish Head",
-      "fileName": "Head/fish.png",
+      "fileName": "Head/fish",
       "price": 2,
       "rarity": 2,
       "flavorText": "Fish.",
@@ -62,24 +62,24 @@
     },
     {
       "name": "Takoyaki Head",
-      "fileName": "Head/octo.png",
+      "fileName": "Head/octo",
       "price": 2,
-      "rarity": 2,
+      "rarity": 0,
       "flavorText": "An edible octopus.",
       "partType": 0
     },
     {
       "name": "Banana Leg",
-      "fileName": "Leg/banana.png",
+      "fileName": "Leg/banana",
       "price": 500,
-      "rarity": 2,
+      "rarity": 1,
       "flavorText": "A rare banana.",
       "partType": 3,
       "moveSpeed": 8.0
     },
     {
       "name": "Chicken Leg",
-      "fileName": "Leg/chicken.png",
+      "fileName": "Leg/chicken",
       "price": 500,
       "rarity": 2,
       "flavorText": "Used to get lots of chicks back in the day.",
@@ -88,16 +88,16 @@
     },
     {
       "name": "Knee Socks",
-      "fileName": "Leg/knee sox.png",
+      "fileName": "Leg/knee sox",
       "price": 120,
-      "rarity": 1,
+      "rarity": 0,
       "flavorText": "High socks.",
       "partType": 3,
       "moveSpeed": 10.0
     },
     {
       "name": "Stockings",
-      "fileName": "Leg/stockin.png",
+      "fileName": "Leg/stockin",
       "price": 200,
       "rarity": 1,
       "flavorText": "Walks like Rihanna.",
@@ -106,7 +106,7 @@
     },
     {
       "name": "Minecraft Arm",
-      "fileName": "Arm/minecraft arm.png",
+      "fileName": "Arm/minecraft arm",
       "price": 50,
       "rarity": 0,
       "flavorText": "Minecraft was too overrated.",
@@ -119,21 +119,32 @@
     },
     {
       "name": "Cat",
-      "fileName": "Head/jonathon from hr.png",
+      "fileName": "Head/jonathon from hr",
       "price": 200,
       "rarity": 1,
       "flavorText": "A cat from Cats.",
-      "partType": 3,
-      "moveSpeed": 15.0
+      "partType": 3
     },
     {
       "name": "Titties",
-      "fileName": "Torso/titty.png",
+      "fileName": "Torso/titty",
       "price": 200,
-      "rarity": 2,
+      "rarity": 1,
       "flavorText": "Bada-Bing Bada-Bong.",
+      "partType": 1,
+      "moveSpeedMult": 0.9,
+      "damageMult": 1.5,
+      "attackSpeedMult": 0.9,
+      "torsoAttackDelay": 1.3
+    },
+    {
+      "name": "Skeleg",
+      "fileName": "Leg/skele leg",
+      "price": 50,
+      "rarity": 1,
+      "flavorText": "Leg.",
       "partType": 3,
-      "moveSpeed": 15.0
+      "moveSpeed": 12.0
     }
   ]
 }

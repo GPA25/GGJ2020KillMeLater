@@ -41,9 +41,9 @@ public class BaseTorso : BasePart
         
     }
 
-    override public void LoadTexture()
+    override public void LoadTexture(string filename)
     {
-        Texture2D tex = Resources.Load<Texture2D>("Textures/Torso/" + name);
+        Texture2D tex = Resources.Load<Texture2D>("Textures/" + filename);
         this.GetComponent<SpriteRenderer>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 512);
     }
 }

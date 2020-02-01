@@ -41,9 +41,9 @@ public class GachaSystem : MonoBehaviour
     {
         if (CheckInventory(1))
         {
-            BasePart.RARITY rarity = RandomGachaNoGuarantee();
+            gachaRarity = RandomGachaNoGuarantee();
             // start animation sequence
-            animator.StartGachaSequence(rarity);
+            animator.StartGachaSequence(gachaRarity);
         }
         else
         {

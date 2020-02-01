@@ -32,12 +32,14 @@ public class BasePart : MonoBehaviour
 
     public LIMB_TYPE limbType = LIMB_TYPE.LIMB_END;
 
-    virtual public void LoadTexture(){}
+    virtual public void LoadTexture(string filename){}
 
     public static BasePart Create(string name, LIMB_TYPE limbType)
     {
         GameObject go = new GameObject();
-        
+
+        PartData partData = PartsTable.Instance.GetPartData(name);
+
         switch(limbType)
         {
             case LIMB_TYPE.LIMB_HEAD:
@@ -45,7 +47,7 @@ public class BasePart : MonoBehaviour
                 go.AddComponent<SpriteRenderer>();
                 go.AddComponent<HeadPart>();
                 go.GetComponent<HeadPart>().name = name;
-                go.GetComponent<HeadPart>().LoadTexture();
+                go.GetComponent<HeadPart>().LoadTexture(partData.fileName);
             break;
 
             case LIMB_TYPE.LIMB_TORSO:
@@ -53,24 +55,34 @@ public class BasePart : MonoBehaviour
                 go.AddComponent<SpriteRenderer>();
                 go.AddComponent<BaseTorso>();
                 go.GetComponent<BaseTorso>().name = name;
-                go.GetComponent<BaseTorso>().LoadTexture();
-            break;
+                go.GetComponent<BaseTorso>().LoadTexture(partData.fileName);
+                go.GetComponent<BaseTorso>().movespdMult = partData.moveSpeedMult;
+                go.GetComponent<BaseTorso>().damageMult = partData.damageMult;
+                go.GetComponent<BaseTorso>().atkSpdMult = partData.attackSpeedMult;
+                go.GetComponent<BaseTorso>().atkDelay = partData.torsoAttackDelay;
+                break;
 
             case LIMB_TYPE.LIMB_ARM:
                     go.name = name;
                     go.AddComponent<SpriteRenderer>();
                     go.AddComponent<ArmPart>();
                     go.GetComponent<ArmPart>().name = name;
-                    go.GetComponent<ArmPart>().LoadTexture();
-            break;
+                    go.GetComponent<ArmPart>().LoadTexture(partData.fileName);
+                    go.GetComponent<ArmPart>().damage = partData.damage;
+                    go.GetComponent<ArmPart>().attackSpeed = partData.attackSpeed;
+                    go.GetComponent<ArmPart>().attackDelay = partData.armAttackDelay;
+                    go.GetComponent<ArmPart>().windUpTime = partData.windupTime;
+                    go.GetComponent<ArmPart>().recoveryTime = partData.recoveryTime;
+                break;
 
             case LIMB_TYPE.LIMB_LEG:
                     go.name = name;
                     go.AddComponent<SpriteRenderer>();
                     go.AddComponent<LegPart>();
                     go.GetComponent<LegPart>().name = name;
-                    go.GetComponent<LegPart>().LoadTexture();
-            break;
+                    go.GetComponent<LegPart>().LoadTexture(partData.fileName);
+                    go.GetComponent<LegPart>().moveSpd = partData.moveSpeed;
+                break;
 
             default:
                     return null;
