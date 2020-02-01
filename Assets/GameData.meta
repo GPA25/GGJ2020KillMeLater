@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/GameData.meta
 guid: fab851bb862d09747b288de0f57631b5
+=======
+guid: 1cd0b8f225e5c8a439afeac9d760bacb
+>>>>>>> Made AI Move:Assets/Scripts/Body Parts.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

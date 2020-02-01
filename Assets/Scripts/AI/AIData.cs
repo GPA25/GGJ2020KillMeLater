@@ -96,6 +96,8 @@ public class AIData
         if (torso && numLegs >= 2)
             return movementSpeed / numLegs * torso.movespdMult;
         else
+        {
             return 1;
+        }
     }
 }
