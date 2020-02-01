@@ -1,6 +1,49 @@
 {
   "data": [
     {
+      "name": "Base Arm",
+      "fileName": "Arm/TestArm",
+      "price": 15,
+      "rarity": 0,
+      "flavorText": "An extremely ordinary arm of an un-ordinary man.",
+      "partType": 2,
+      "damage": 5,
+      "windupTime": 1.0,
+      "attackSpeed": 1.0,
+      "recoveryTime": 1.0,
+      "armAttackDelay": 1.0
+    },
+    {
+      "name": "Base Leg",
+      "fileName": "Leg/TestLeg",
+      "price": 15,
+      "rarity": 0,
+      "flavorText": "An extremely ordinary leg of an un-ordinary man.",
+      "partType": 3,
+      "moveSpeed": 1.0
+    },
+    {
+      "name": "Base Head",
+      "fileName": "Head/TestHead",
+      "price": 15,
+      "rarity": 0,
+      "flavorText": "An extremely ordinary head of an un-ordinary man.",
+      "partType": 0
+    },
+    {
+      "name": "Base Torso",
+      "fileName": "Torso/TestTorso",
+      "price": 15,
+      "rarity": 0,
+      "flavorText": "An extremely ordinary body of an un-ordinary man.",
+      "partType": 1,
+      "health": 100,
+      "moveSpeedMult": 1.0,
+      "damageMult": 1.0,
+      "attackSpeedMult": 1.0,
+      "torsoAttackDelay": 1.0
+    },
+    {
       "name": "Muscle",
       "fileName": "Arm/muscle",
       "price": 35,
@@ -280,6 +323,58 @@
       "flavorText": "A pirate lost his leg twice for you to have this",
       "partType": 3,
       "moveSpeed": 3.0
+    },
+    {
+      "name": "Bambody",
+      "fileName": "Torso/bamboo",
+      "price": 30,
+      "rarity": 0,
+      "flavorText": "The bamboo gave up an 'o' to be a body.",
+      "partType": 1,
+      "health": 80,
+      "moveSpeedMult": 0.9,
+      "damageMult": 1.2,
+      "attackSpeedMult": 0.8,
+      "torsoAttackDelay": 1.0
+    },
+    {
+      "name": "Fish Tank",
+      "fileName": "Torso/fishtank",
+      "price": 100,
+      "rarity": 0,
+      "flavorText": "The glass is sturdy and waterproof.",
+      "partType": 1,
+      "health": 130,
+      "moveSpeedMult": 0.7,
+      "damageMult": 1.0,
+      "attackSpeedMult": 1.3,
+      "torsoAttackDelay": 1.1
+    },
+    {
+      "name": "Traffic Light",
+      "fileName": "Torso/trafficlight",
+      "price": 200,
+      "rarity": 1,
+      "flavorText": "STOP",
+      "partType": 1,
+      "health": 180,
+      "moveSpeedMult": 0.2,
+      "damageMult": 2.0,
+      "attackSpeedMult": 0.6,
+      "torsoAttackDelay": 2.5
+    },
+    {
+      "name": "Luna",
+      "fileName": "Torso/moon",
+      "price": 600,
+      "rarity": 2,
+      "flavorText": "Become one with the goddess of the moon.",
+      "partType": 1,
+      "health": 200,
+      "moveSpeedMult": 2.0,
+      "damageMult": 1.2,
+      "attackSpeedMult": 1.8,
+      "torsoAttackDelay": 0.7
     }
   ]
 }
