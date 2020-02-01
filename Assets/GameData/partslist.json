@@ -64,7 +64,7 @@
       "name": "Takoyaki Head",
       "fileName": "Head/octo",
       "price": 20,
-      "rarity": 0,
+      "rarity": 1,
       "flavorText": "An edible octopus.",
       "partType": 0
     },
@@ -118,11 +118,11 @@
       "armAttackDelay": 2.0
     },
     {
-      "name": "Cat",
+      "name": "Johnathon",
       "fileName": "Head/johnathon from hr",
       "price": 200,
       "rarity": 0,
-      "flavorText": "A cat from Cats.",
+      "flavorText": "A furry who hid in your management.",
       "partType": 0
     },
     {
@@ -276,7 +276,7 @@
       "name": "Peg Leg",
       "fileName": "Leg/pegleg",
       "price": 20,
-      "rarity": 1,
+      "rarity": 0,
       "flavorText": "This leg will work hard.",
       "partType": 3,
       "moveSpeed": 3.0

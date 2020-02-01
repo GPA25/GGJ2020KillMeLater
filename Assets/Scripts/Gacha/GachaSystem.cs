@@ -22,6 +22,11 @@ public class GachaSystem : MonoBehaviour
     private GameObject doneButton;
 
     [SerializeField]
+    private GameObject flavorText;
+    [SerializeField]
+    private GameObject nameText;
+
+    [SerializeField]
     private ParticleSystem particleSystemR;
     [SerializeField]
     private ParticleSystem particleSystemSR;
@@ -61,6 +66,7 @@ public class GachaSystem : MonoBehaviour
                 List<PartData> parts = PartsTable.Instance.GetPartsByRarity(gachaRarity);
                 int roll = Random.Range(0, parts.Count);
                 BasePart partGO = BasePart.Create(parts[roll].name);
+                partGO.transform.localScale = new Vector3(0.45f, 0.45f, 0.45f);
                 if (!isSingleSummon) {
                     tenSummon.Add(partGO.transform);
                 }
@@ -113,6 +119,9 @@ public class GachaSystem : MonoBehaviour
                         particleSystemUR.gameObject.SetActive(false);
                         break;
                 }
+                // turn off text
+                flavorText.SetActive(false);
+                nameText.SetActive(false);
 
                 Summon();
             }
@@ -124,6 +133,8 @@ public class GachaSystem : MonoBehaviour
             {
                 tenSummon[i].position = summonPositions[i];
                 tenSummon[i].gameObject.SetActive(true);
+                // resize to be smaller to fit screen
+                tenSummon[i].localScale = new Vector3(0.15f, 0.15f, 0.15f);
             }
             doneButton.SetActive(true);
 

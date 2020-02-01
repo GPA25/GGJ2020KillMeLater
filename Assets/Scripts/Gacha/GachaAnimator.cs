@@ -27,8 +27,12 @@ public class GachaAnimator : MonoBehaviour
     private Transform zoomPoint;
 
     [SerializeField]
-    private GameObject doneButton;
+    private Text flavorText;
+    [SerializeField]
+    private Text nameText;
 
+    [SerializeField]
+    private GameObject doneButton;
     [SerializeField]
     private GameObject gachaButton;
 
@@ -38,6 +42,9 @@ public class GachaAnimator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        flavorText.gameObject.SetActive(false);
+        nameText.gameObject.SetActive(false);
+
         panelR.SetActive(false);
         panelSR.SetActive(false);
         panelUR.SetActive(false);
@@ -56,6 +63,9 @@ public class GachaAnimator : MonoBehaviour
 
     public void StartGachaSequence(BasePart.RARITY rarity)
     {
+        flavorText.gameObject.SetActive(false);
+        nameText.gameObject.SetActive(false);
+
         gachaButton.SetActive(false);
         initialBackground.GetComponent<MoveBackground>().StopMove();
         StartCoroutine(AnimSequence(rarity));
@@ -150,7 +160,16 @@ public class GachaAnimator : MonoBehaviour
         }
         part.position = Vector3.zero;
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
+
+        // set flavor text & name
+        flavorText.gameObject.SetActive(true);
+        nameText.gameObject.SetActive(true);
+
+        PartData partData = PartsTable.Instance.GetPartData(part.GetComponent<BasePart>().name);
+        flavorText.text = "\"" + partData.flavorText + "\"";
+        nameText.text = partData.name;
+
 
         if (isSingleSummon)
             doneButton.SetActive(true);
