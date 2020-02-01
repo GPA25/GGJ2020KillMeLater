@@ -18,16 +18,8 @@ public class BaseTorso : BasePart
     // How Long before the next attack
     public float atkDelay = 1.0f;
 
-    // Positions of the limbs
-    public List<Vector3> l_LimbPosition = new List<Vector3>();
-
     void Awake()
     {
-        l_LimbPosition.Add(new Vector3(0.0f, 1.0f, 9));
-        l_LimbPosition.Add(new Vector3(0.46f, 0.7f, 12));
-        l_LimbPosition.Add(new Vector3(-0.159f, 0.64f, 8));
-        l_LimbPosition.Add(new Vector3(0.214f, -0.681f, 11));
-        l_LimbPosition.Add(new Vector3(-0.29f, -0.55f, 9));
     }
 
     // Start is called before the first frame update
