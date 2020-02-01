@@ -30,7 +30,9 @@ public class GachaAnimator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        panelR.SetActive(false);
+        panelSR.SetActive(false);
+        panelUR.SetActive(false);
     }
 
     // Update is called once per frame
@@ -39,13 +41,13 @@ public class GachaAnimator : MonoBehaviour
         
     }
 
-    public void StartGachaSequence()
+    public void StartGachaSequence(BasePart.RARITY rarity)
     {
         initialBackground.GetComponent<MoveBackground>().StopMove();
-        StartCoroutine(Zoom());
+        StartCoroutine(AnimSequence(rarity));
     }
 
-    private IEnumerator Zoom()
+    private IEnumerator AnimSequence(BasePart.RARITY rarity)
     {
         /*float panTime = 0f;
         while (panTime <= 1.5f)
@@ -79,14 +81,30 @@ public class GachaAnimator : MonoBehaviour
         transform.position = targetPos;
 
         // load the corresponding rarity
-        panelR.SetActive(true);
-        float panelScale = panelR.transform.localScale.x;
+        Transform panelToShow = panelR.transform;
+        switch (rarity)
+        {
+            case BasePart.RARITY.RARITY_RARE:
+                panelToShow = panelR.transform;
+                panelR.SetActive(true);
+                break;
+            case BasePart.RARITY.RARITY_SUPER_RARE:
+                panelToShow = panelSR.transform;
+                panelSR.SetActive(true);
+                break;
+            case BasePart.RARITY.RARITY_ULTRA_RARE:
+                panelToShow = panelUR.transform;
+                panelUR.SetActive(true);
+                break;
+        }
+
+        float panelScale = panelToShow.localScale.x;
         while (panelScale > 1f)
         {
             panelScale -= Time.deltaTime * 0.5f * zoomOutSpeed;
             if (panelScale < 1f)
                 panelScale = 1f;
-            panelR.transform.localScale = new Vector3(panelScale, panelScale, panelScale);
+            panelToShow.localScale = new Vector3(panelScale, panelScale, panelScale);
             yield return null;
         }
     }

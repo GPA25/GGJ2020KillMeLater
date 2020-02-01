@@ -48,7 +48,22 @@ public class PartsTable : MonoBehaviour
         return null;
     }
 
-    public List<PartData> GetPartsByType(int type)  // change to enum
+    public List<PartData> GetPartsByRarity(BasePart.RARITY rarity)
+    {
+        List<PartData> partsList = new List<PartData>();
+        foreach (var key in partsTable.Keys)
+        {
+            PartData part = partsTable[key];
+            if (part.rarity == (int)rarity)
+            {
+                partsList.Add(part);
+            }
+        }
+
+        return partsList;
+    }
+
+    public List<PartData> GetPartsByType(BasePart.LIMB_TYPE type)  // change to enum
     {
         List<PartData> partsList = new List<PartData>();
         foreach (var key in partsTable.Keys)
@@ -58,7 +73,7 @@ public class PartsTable : MonoBehaviour
             {
                 partsList.Add(part);
             }
-            else if (part.partType == type)
+            else if (part.partType == (int)type)
             {
                 partsList.Add(part);
             }

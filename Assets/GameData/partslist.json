@@ -125,6 +125,15 @@
       "flavorText": "A cat from Cats.",
       "partType": 3,
       "moveSpeed": 15.0
+    },
+    {
+      "name": "Titties",
+      "fileName": "Torso/titty.png",
+      "price": 200,
+      "rarity": 2,
+      "flavorText": "Bada-Bing Bada-Bong.",
+      "partType": 3,
+      "moveSpeed": 15.0
     }
   ]
 }

@@ -14,6 +14,8 @@ public class GachaSystem : MonoBehaviour
     [SerializeField]
     private GachaAnimator animator;
 
+    private BasePart.RARITY gachaRarity;    // rarity that had been gacha'd
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,15 +28,26 @@ public class GachaSystem : MonoBehaviour
         
     }
 
+    public void GachaRoll()
+    {
+        List<PartData> parts = PartsTable.Instance.GetPartsByRarity(gachaRarity);
+        int roll = Random.Range(0, parts.Count);
+        BasePart partGO = BasePart.Create(parts[roll].name, (BasePart.LIMB_TYPE)(parts[roll].partType));
+
+        Debug.Log("Roll: " + parts[roll].name);
+    }
+
     public void SingleSummon()
     {
         if (CheckInventory(1))
         {
-            BasePart part = RandomGachaNoGuarantee();
-
-            // add to inventory
-
-            animator.StartGachaSequence();
+            BasePart.RARITY rarity = RandomGachaNoGuarantee();
+            // start animation sequence
+            animator.StartGachaSequence(rarity);
+        }
+        else
+        {
+            Debug.Log("Inventory full");
         }
     }
 
@@ -47,6 +60,10 @@ public class GachaSystem : MonoBehaviour
                 //BasePart part = RandomGachaNoGuarantee();
             }
         }
+        else
+        {
+            Debug.Log("Inventory full");
+        }
     }
 
     private bool CheckInventory(int numSlotsNeeded)
@@ -56,26 +73,24 @@ public class GachaSystem : MonoBehaviour
         return true;
     }
 
-    private BasePart RandomGachaNoGuarantee()
+    private BasePart.RARITY RandomGachaNoGuarantee()
     {
         float roll = Random.Range(0f, 1f);
         if (roll <= rateUR)
         {
             Debug.Log("UR");
-            // get UR part
+            return BasePart.RARITY.RARITY_ULTRA_RARE;
         }
         else if (roll <= rateUR + rateSR)
         {
             Debug.Log("SR");
-            // get SR part
+            return BasePart.RARITY.RARITY_SUPER_RARE;
         }
         else
         {
             Debug.Log("R");
-            // get R part
+            return BasePart.RARITY.RARITY_RARE;
         }
-
-        return null;
     }
 
     private BasePart RandomGachaGuarantee()
