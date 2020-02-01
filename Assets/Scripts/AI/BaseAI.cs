@@ -41,7 +41,9 @@ public class BaseAI : MonoBehaviour
                 attackDelay -= Time.deltaTime;
                 chaseState.Update(Time.deltaTime);
 
-                if (Vector2.Distance(this.transform.position, chaseState.target.transform.position) < attackState.currArm.atkRange * 0.5)
+                //Debug.Log(Vector2.Distance(this.transform.root.position, chaseState.target.transform.root.position));
+
+                if (Vector2.Distance(this.transform.root.position, chaseState.target.transform.root.position) < attackState.currArm.atkRange * 0.5)
                 {
                     SetState(AI_STATE.ATTACK_STATE);
 
@@ -50,12 +52,13 @@ public class BaseAI : MonoBehaviour
                         attackState.Attack();
                         attackDelay = attackState.currArm.attackDelay;
                     }
+                    Debug.Log("Atk");
                 }
 
                 if (chaseState.target.transform.position.x - chaseState.attachedObject.transform.position.x > 0.0f)
                 {
                     chaseState.attachedObject.transform.root.localEulerAngles = new Vector3(0, 180, 0);
-                    Debug.Log(chaseState.attachedObject.transform.root);
+                  
                 }
                 break;
 

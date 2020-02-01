@@ -238,7 +238,7 @@ PrefabInstance:
     - target: {fileID: 1541286851889797870, guid: b2979a104aa20dd4c9af6d5f7b1f7a30,
         type: 3}
       propertyPath: atkRange
-      value: 2
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 1541286851889797870, guid: b2979a104aa20dd4c9af6d5f7b1f7a30,
         type: 3}
@@ -368,7 +368,7 @@ PrefabInstance:
     - target: {fileID: 3760935995111561370, guid: b2979a104aa20dd4c9af6d5f7b1f7a30,
         type: 3}
       propertyPath: atkRange
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3760935995111561370, guid: b2979a104aa20dd4c9af6d5f7b1f7a30,
         type: 3}
@@ -393,7 +393,7 @@ PrefabInstance:
     - target: {fileID: 7416575904596080854, guid: b2979a104aa20dd4c9af6d5f7b1f7a30,
         type: 3}
       propertyPath: moveSpd
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8010196172775524385, guid: b2979a104aa20dd4c9af6d5f7b1f7a30,
         type: 3}
@@ -832,6 +832,16 @@ PrefabInstance:
       propertyPath: m_LinearDrag
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1935944929744481606, guid: b2979a104aa20dd4c9af6d5f7b1f7a30,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935944929744481606, guid: b2979a104aa20dd4c9af6d5f7b1f7a30,
+        type: 3}
+      propertyPath: isAlive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1935944929744481607, guid: b2979a104aa20dd4c9af6d5f7b1f7a30,
         type: 3}
       propertyPath: m_ApplyRootMotion
@@ -941,6 +951,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331339194826539362, guid: b2979a104aa20dd4c9af6d5f7b1f7a30,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8595272099709666202, guid: b2979a104aa20dd4c9af6d5f7b1f7a30,
         type: 3}
