@@ -56,6 +56,7 @@ public class BasePart : MonoBehaviour
                 go.AddComponent<BaseTorso>();
                 go.GetComponent<BaseTorso>().name = name;
                 go.GetComponent<BaseTorso>().LoadTexture(partData.fileName);
+                go.GetComponent<BaseTorso>().health = partData.health;
                 go.GetComponent<BaseTorso>().movespdMult = partData.moveSpeedMult;
                 go.GetComponent<BaseTorso>().damageMult = partData.damageMult;
                 go.GetComponent<BaseTorso>().atkSpdMult = partData.attackSpeedMult;

@@ -20,6 +20,7 @@ public class PartData
     public string flavorText;
     public int partType;    // enum
     // Torso
+    public int health;
     public float moveSpeedMult;
     public float damageMult;
     public float attackSpeedMult;
