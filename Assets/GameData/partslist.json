@@ -119,9 +119,9 @@
     },
     {
       "name": "Cat",
-      "fileName": "Head/jonathon from hr",
+      "fileName": "Head/johnathon from hr",
       "price": 200,
-      "rarity": 1,
+      "rarity": 0,
       "flavorText": "A cat from Cats.",
       "partType": 3
     },
@@ -145,6 +145,19 @@
       "flavorText": "Leg.",
       "partType": 3,
       "moveSpeed": 12.0
+    },
+    {
+      "name": "Tree Arm",
+      "fileName": "Arm/tree",
+      "price": 50,
+      "rarity": 2,
+      "flavorText": "Goblin in a tree wew",
+      "partType": 3,
+      "damage": 6,
+      "windupTime": 0.3,
+      "attackSpeed": 1.2,
+      "recoveryTime": 0.7,
+      "armAttackDelay": 1.2
     }
   ]
 }

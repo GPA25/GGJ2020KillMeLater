@@ -29,6 +29,9 @@ public class GachaAnimator : MonoBehaviour
     [SerializeField]
     private GameObject gachaButton;
 
+    private Vector3 initialPanelScale;
+    private Transform currentPanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,9 @@ public class GachaAnimator : MonoBehaviour
         panelSR.SetActive(false);
         panelUR.SetActive(false);
         gachaButton.SetActive(false);
+
+        currentPanel = initialBackground.transform;
+        initialPanelScale = panelR.transform.localScale;
     }
 
     // Update is called once per frame
@@ -46,6 +52,7 @@ public class GachaAnimator : MonoBehaviour
 
     public void StartGachaSequence(BasePart.RARITY rarity)
     {
+        gachaButton.SetActive(false);
         initialBackground.GetComponent<MoveBackground>().StopMove();
         StartCoroutine(AnimSequence(rarity));
     }
@@ -65,49 +72,56 @@ public class GachaAnimator : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
 
         float time = 0f;
-        Vector3 startPos = initialBackground.transform.position;
+        Vector3 startPos = currentPanel.transform.position;
         Vector3 targetPos = zoomPoint.position;
-        Image image = initialBackground.GetComponent<Image>();
+        Image image = currentPanel.GetComponent<Image>();
 
         // zoom
         while (time <= 0.8f)
         {
             time += Time.deltaTime;
             // move
-            initialBackground.transform.position = Vector3.Lerp(startPos, targetPos, time * moveSpeed);
+            //initialBackground.transform.position = Vector3.Lerp(startPos, targetPos, time * moveSpeed);
             // scale
-            initialBackground.transform.localScale += Time.deltaTime * zoomInSpeed * new Vector3(1, 1, 1);
+            currentPanel.transform.localScale += Time.deltaTime * zoomInSpeed * new Vector3(1, 1, 1);
             // fade
             image.color = new Color(1f, 1f, 1f, 1f - (0.8f * time));
             yield return null;
         }
-        transform.position = targetPos;
+        //transform.position = targetPos;
+
+        // set initial scale and colour values
+        panelR.transform.localScale = initialPanelScale;
+        panelSR.transform.localScale = initialPanelScale;
+        panelUR.transform.localScale = initialPanelScale;
+        image.color = new Color(1f, 1f, 1f, 1f);
 
         // load the corresponding rarity
-        Transform panelToShow = panelR.transform;
+        currentPanel.gameObject.SetActive(false);
+        currentPanel = panelR.transform;
         switch (rarity)
         {
             case BasePart.RARITY.RARITY_RARE:
-                panelToShow = panelR.transform;
+                currentPanel = panelR.transform;
                 panelR.SetActive(true);
                 break;
             case BasePart.RARITY.RARITY_SUPER_RARE:
-                panelToShow = panelSR.transform;
+                currentPanel = panelSR.transform;
                 panelSR.SetActive(true);
                 break;
             case BasePart.RARITY.RARITY_ULTRA_RARE:
-                panelToShow = panelUR.transform;
+                currentPanel = panelUR.transform;
                 panelUR.SetActive(true);
                 break;
         }
 
-        float panelScale = panelToShow.localScale.x;
+        float panelScale = currentPanel.localScale.x;
         while (panelScale > 1f)
         {
             panelScale -= Time.deltaTime * 0.5f * zoomOutSpeed;
             if (panelScale < 1f)
                 panelScale = 1f;
-            panelToShow.localScale = new Vector3(panelScale, panelScale, panelScale);
+            currentPanel.localScale = new Vector3(panelScale, panelScale, panelScale);
             yield return null;
         }
 

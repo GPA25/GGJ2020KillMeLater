@@ -5,16 +5,26 @@ using UnityEngine;
 public class GachaSystem : MonoBehaviour
 {
     [SerializeField]
-    float rateR = 0.75f;
+    private float rateR = 0.75f;
     [SerializeField]
-    float rateSR = 0.24f;
+    private float rateSR = 0.24f;
     [SerializeField]
-    float rateUR = 0.01f;
+    private float rateUR = 0.01f;
+
+    private int numSummons = 0;
+
+    [SerializeField]
+    private GameObject[] buttonsToHide;
 
     [SerializeField]
     private GachaAnimator animator;
 
+    [SerializeField]
+    private Vector3[] summonPositions;    // for all 10
+
     private BasePart.RARITY gachaRarity;    // rarity that had been gacha'd
+    private bool gachaEnded = false;     // start the next gacha
+    private bool isSingleSummon = false;
 
     // Start is called before the first frame update
     void Start()
@@ -30,20 +40,46 @@ public class GachaSystem : MonoBehaviour
 
     public void GachaRoll()
     {
-        List<PartData> parts = PartsTable.Instance.GetPartsByRarity(gachaRarity);
-        int roll = Random.Range(0, parts.Count);
-        BasePart partGO = BasePart.Create(parts[roll].name, (BasePart.LIMB_TYPE)(parts[roll].partType));
+        if (numSummons > 0)
+        {
+            if (!gachaEnded)
+            {
+                numSummons--;
 
-        Debug.Log("Roll: " + parts[roll].name);
+                List<PartData> parts = PartsTable.Instance.GetPartsByRarity(gachaRarity);
+                int roll = Random.Range(0, parts.Count);
+                BasePart partGO = BasePart.Create(parts[roll].name, (BasePart.LIMB_TYPE)(parts[roll].partType));
+                if (!isSingleSummon) {
+                    partGO.transform.position = summonPositions[9 - numSummons];
+                }
+
+                Debug.Log("Roll: " + parts[roll].name);
+
+                gachaEnded = true;
+            }
+            else
+            {
+                gachaEnded = false;
+                Summon();
+            }
+        }
+        else
+        {
+            // Exit scene
+        }
     }
 
     public void SingleSummon()
     {
         if (CheckInventory(1))
         {
-            gachaRarity = RandomGachaNoGuarantee();
-            // start animation sequence
-            animator.StartGachaSequence(gachaRarity);
+            numSummons = 1;
+            Summon();
+            isSingleSummon = true;
+            foreach (GameObject go in buttonsToHide)
+            {
+                go.SetActive(false);
+            }
         }
         else
         {
@@ -51,13 +87,22 @@ public class GachaSystem : MonoBehaviour
         }
     }
 
+    private void Summon()
+    {
+        gachaRarity = RandomGachaNoGuarantee();
+        // start animation sequence
+        animator.StartGachaSequence(gachaRarity);
+    }
+
     public void TenSummon()
     {
         if (CheckInventory(10))
         {
-            for (int i = 0; i < 10; i++)
+            numSummons = 10;
+            Summon();
+            foreach (GameObject go in buttonsToHide)
             {
-                //BasePart part = RandomGachaNoGuarantee();
+                go.SetActive(false);
             }
         }
         else

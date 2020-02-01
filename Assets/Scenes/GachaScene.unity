@@ -654,7 +654,21 @@ MonoBehaviour:
   rateR: 0.75
   rateSR: 0.24
   rateUR: 0.01
+  buttonsToHide:
+  - {fileID: 271018590}
+  - {fileID: 1536050127}
   animator: {fileID: 876132056}
+  summonPositions:
+  - {x: -6, y: 2, z: 0}
+  - {x: -3, y: 2, z: 0}
+  - {x: 0, y: 2, z: 0}
+  - {x: 3, y: 2, z: 0}
+  - {x: 6, y: 2, z: 0}
+  - {x: -6, y: -1, z: 0}
+  - {x: -3, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 3, y: -1, z: 0}
+  - {x: 6, y: -1, z: 0}
 --- !u!4 &876132055
 Transform:
   m_ObjectHideFlags: 0
