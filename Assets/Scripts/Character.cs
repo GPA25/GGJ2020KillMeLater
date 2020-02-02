@@ -30,4 +30,15 @@ public class Character : MonoBehaviour
             l_AttachedLimbs[i].LoadTexture(PartsTable.instance.GetPartData(limbNameArray[i]).fileName);
         }
     }
+
+    public void InitRandom()
+    {
+        head.LoadTexture(PartsTable.instance.GetPartsByType(BasePart.LIMB_TYPE.LIMB_HEAD)[Random.Range(0, PartsTable.instance.GetPartsByType(BasePart.LIMB_TYPE.LIMB_HEAD).Count)].fileName);
+        torso.LoadTexture(PartsTable.instance.GetPartsByType(BasePart.LIMB_TYPE.LIMB_TORSO)[Random.Range(0, PartsTable.instance.GetPartsByType(BasePart.LIMB_TYPE.LIMB_TORSO).Count)].fileName);
+
+        l_AttachedLimbs[0].LoadTexture(PartsTable.instance.GetPartsByType(BasePart.LIMB_TYPE.LIMB_ARM)[Random.Range(0, PartsTable.instance.GetPartsByType(BasePart.LIMB_TYPE.LIMB_ARM).Count)].fileName);
+        l_AttachedLimbs[1].LoadTexture(PartsTable.instance.GetPartsByType(BasePart.LIMB_TYPE.LIMB_ARM)[Random.Range(0, PartsTable.instance.GetPartsByType(BasePart.LIMB_TYPE.LIMB_ARM).Count)].fileName);
+        l_AttachedLimbs[2].LoadTexture(PartsTable.instance.GetPartsByType(BasePart.LIMB_TYPE.LIMB_LEG)[Random.Range(0, PartsTable.instance.GetPartsByType(BasePart.LIMB_TYPE.LIMB_LEG).Count)].fileName);
+        l_AttachedLimbs[3].LoadTexture(PartsTable.instance.GetPartsByType(BasePart.LIMB_TYPE.LIMB_LEG)[Random.Range(0, PartsTable.instance.GetPartsByType(BasePart.LIMB_TYPE.LIMB_LEG).Count)].fileName);
+    }
 }

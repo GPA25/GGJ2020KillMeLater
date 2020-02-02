@@ -7,24 +7,21 @@ public class CustomizationManager : MonoBehaviour
 {
     public GameObject prefabObj;
     public Transform characterDisplay;
+    public GameObject highlightPrefab;
 
     public Transform headContentDisplay;
     public Transform torsoContentDisplay;
     public Transform limbsContentDisplay;
 
-    public Transform headSlot;
-    public Transform torsoSlot;
-    public Transform leftArmSlot;
-    public Transform rightArmSlot;
-    public Transform leftLegSlot;
-    public Transform rightLegSlot;
+    public Transform[] equipmentSlots;
 
     public List<HeadPart> headList = new List<HeadPart>();
     public List<BaseTorso> torsoList = new List<BaseTorso>();
     public List<BasePart> limbList = new List<BasePart>();
 
-    string selectedFromInventory;
-    string selectedFromEquipped;
+    GameObject selectedFromInventory;
+    int selectedFromEquippedIndex;
+    Character displayingCharac;
 
     // Start is called before the first frame update
     void Start()
@@ -33,10 +30,12 @@ public class CustomizationManager : MonoBehaviour
         go.transform.parent = characterDisplay;
         go.transform.localScale = new Vector3(1, 1, 1);
         go.transform.localPosition = Vector3.zero;
-        Character charac = go.GetComponent<Character>();
+        displayingCharac = go.GetComponent<Character>();
 
-        string[] equippedLimbs = {PlayerData.instance.equippedLeftArm, PlayerData.instance.equippedRightArm, PlayerData.instance.equippedLeftLeg, PlayerData.instance.equippedRightLeg};
-        charac.Init(PlayerData.instance.equippedHead, PlayerData.instance.equippedTorso, equippedLimbs);
+        string[] equippedLimbs = { PlayerData.instance.equipmentSlot[2], PlayerData.instance.equipmentSlot[3], PlayerData.instance.equipmentSlot[4], PlayerData.instance.equipmentSlot[5] };
+        displayingCharac.Init(PlayerData.instance.equipmentSlot[0], PlayerData.instance.equipmentSlot[1], equippedLimbs);
+
+        highlightPrefab = Instantiate(highlightPrefab);
 
         LoadAllItems();
         
@@ -49,13 +48,62 @@ public class CustomizationManager : MonoBehaviour
         
     }
 
-    public void SelectFromInventory(string partName)
+    public void SelectFromInventory(GameObject partName)
     {
         selectedFromInventory = partName;
+        highlightPrefab.SetActive(true);
+        highlightPrefab.transform.parent = partName.transform;
+        highlightPrefab.transform.localScale = new Vector3(1, 1, 1);
+        highlightPrefab.transform.localPosition = new Vector3(0, 0, 1);
+
+        if (selectedFromEquippedIndex < (int)PlayerData.EQUIP_SLOT.EQUIP_END)
+        {
+            PartData partData1 = PartsTable.instance.GetPartData(selectedFromInventory.name);
+            PartData partData2 = PartsTable.instance.GetPartData(equipmentSlots[selectedFromEquippedIndex].transform.GetChild(0).name);
+
+            if (partData1.partType == partData2.partType)
+            {
+                SwapParts();
+            }
+        }
     }
-    public void SelectFromEquipped(GameObject go)
+    public void SelectFromEquipped(int slotIndex)
     {
-        selectedFromEquipped = go.transform.GetChild(0).name;
+        selectedFromEquippedIndex = slotIndex;
+        highlightPrefab.SetActive(true);
+        highlightPrefab.transform.parent = equipmentSlots[slotIndex].transform;
+        highlightPrefab.transform.localScale = new Vector3(1, 1, 1);
+        highlightPrefab.transform.localPosition = new Vector3(0, 0, 1);
+
+        if (selectedFromInventory != null)
+        {
+            PartData partData1 = PartsTable.instance.GetPartData(selectedFromInventory.name);
+            PartData partData2 = PartsTable.instance.GetPartData(equipmentSlots[selectedFromEquippedIndex].transform.GetChild(0).name);
+
+            if (partData1.partType == partData2.partType)
+            {
+                SwapParts();
+            }
+        }
+    }
+
+    void SwapParts()
+    {
+        Sprite tempoSprite = equipmentSlots[selectedFromEquippedIndex].transform.GetChild(0).GetComponent<Image>().sprite;
+        equipmentSlots[selectedFromEquippedIndex].transform.GetChild(0).GetComponent<Image>().sprite = selectedFromInventory.GetComponent<Image>().sprite;
+        selectedFromInventory.GetComponent<Image>().sprite = tempoSprite;
+        string tempoName = equipmentSlots[selectedFromEquippedIndex].transform.GetChild(0).name;
+        equipmentSlots[selectedFromEquippedIndex].transform.GetChild(0).name = selectedFromInventory.name;
+        selectedFromInventory.name = tempoName;
+
+        PlayerData.instance.equipmentSlot[selectedFromEquippedIndex] = equipmentSlots[selectedFromEquippedIndex].transform.GetChild(0).name;
+
+        string[] equippedLimbs = { PlayerData.instance.equipmentSlot[2], PlayerData.instance.equipmentSlot[3], PlayerData.instance.equipmentSlot[4], PlayerData.instance.equipmentSlot[5] };
+        displayingCharac.Init(PlayerData.instance.equipmentSlot[0], PlayerData.instance.equipmentSlot[1], equippedLimbs);
+
+        selectedFromInventory = null;
+        selectedFromEquippedIndex = (int)PlayerData.EQUIP_SLOT.EQUIP_END;
+        highlightPrefab.SetActive(false);
     }
 
     void LoadAllItems()
@@ -67,8 +115,9 @@ public class CustomizationManager : MonoBehaviour
             GameObject go = new GameObject(); //Create the GameObject
             go.name = data.name;
             Button btn = go.AddComponent<Button>();
-            btn.onClick.AddListener(() => SelectFromInventory(go.name));
+            btn.onClick.AddListener(() => SelectFromInventory(go));
             Image img = go.AddComponent<Image>(); //Add the Image Component script
+            img.preserveAspect = true;
             Texture2D tex = Resources.Load<Texture2D>("Textures/" + data.fileName);
             img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
             go.SetActive(true); //Activate the GameObject
@@ -97,74 +146,80 @@ public class CustomizationManager : MonoBehaviour
     void LoadEquippedItems()
     {
         {//head slot
-            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equippedHead);
+            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equipmentSlot[0]);
             GameObject go = new GameObject(); //Create the GameObject
             go.name = data.name;
             Image img = go.AddComponent<Image>(); //Add the Image Component script
+            img.preserveAspect = true;
             Texture2D tex = Resources.Load<Texture2D>("Textures/" + data.fileName);
             img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
             go.SetActive(true); //Activate the GameObject
-            go.GetComponent<RectTransform>().SetParent(headSlot);
+            go.GetComponent<RectTransform>().SetParent(equipmentSlots[0]);
             go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             go.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
         }
         {//torso slot
-            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equippedTorso);
+            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equipmentSlot[1]);
             GameObject go = new GameObject(); //Create the GameObject
             go.name = data.name;
             Image img = go.AddComponent<Image>(); //Add the Image Component script
+            img.preserveAspect = true;
             Texture2D tex = Resources.Load<Texture2D>("Textures/" + data.fileName);
             img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
             go.SetActive(true); //Activate the GameObject
-            go.GetComponent<RectTransform>().SetParent(torsoSlot);
+            go.GetComponent<RectTransform>().SetParent(equipmentSlots[1]);
             go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             go.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
         }
         {//leftArm slot
-            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equippedLeftArm);
+            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equipmentSlot[2]);
             GameObject go = new GameObject(); //Create the GameObject
             go.name = data.name;
             Image img = go.AddComponent<Image>(); //Add the Image Component script
+            img.preserveAspect = true;
             Texture2D tex = Resources.Load<Texture2D>("Textures/" + data.fileName);
             img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
             go.SetActive(true); //Activate the GameObject
-            go.GetComponent<RectTransform>().SetParent(leftArmSlot);
+            go.GetComponent<RectTransform>().SetParent(equipmentSlots[2]);
             go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             go.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
         }
         {//rightArm slot
-            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equippedRightArm);
+            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equipmentSlot[3]);
             GameObject go = new GameObject(); //Create the GameObject
             go.name = data.name;
             Image img = go.AddComponent<Image>(); //Add the Image Component script
+            img.preserveAspect = true;
             Texture2D tex = Resources.Load<Texture2D>("Textures/" + data.fileName);
             img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
             go.SetActive(true); //Activate the GameObject
-            go.GetComponent<RectTransform>().SetParent(rightArmSlot);
+            go.GetComponent<RectTransform>().SetParent(equipmentSlots[3]);
             go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             go.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
         }
         {//leftLeg slot
-            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equippedLeftLeg);
+            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equipmentSlot[4]);
             GameObject go = new GameObject(); //Create the GameObject
             go.name = data.name;
             Image img = go.AddComponent<Image>(); //Add the Image Component script
+            img.preserveAspect = true;
             Texture2D tex = Resources.Load<Texture2D>("Textures/" + data.fileName);
             img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
             go.SetActive(true); //Activate the GameObject
-            go.GetComponent<RectTransform>().SetParent(leftLegSlot);
+            go.GetComponent<RectTransform>().SetParent(equipmentSlots[4]);
             go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             go.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
         }
         {//rightLeg slot
-            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equippedRightLeg);
+            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equipmentSlot[5]);
             GameObject go = new GameObject(); //Create the GameObject
             go.name = data.name;
             Image img = go.AddComponent<Image>(); //Add the Image Component script
+            img.preserveAspect = true;
             Texture2D tex = Resources.Load<Texture2D>("Textures/" + data.fileName);
             img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
             go.SetActive(true); //Activate the GameObject
-            go.GetComponent<RectTransform>().SetParent(rightLegSlot);
+            go.GetComponent<RectTransform>().SetParent(equipmentSlots[5]);
             go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             go.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
         }

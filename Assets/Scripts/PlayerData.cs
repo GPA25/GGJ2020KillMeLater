@@ -23,24 +23,32 @@ public class PlayerData : MonoBehaviour
 
         name = PlayerPrefs.GetString("name");
         currency = PlayerPrefs.GetInt("currency");
+        equipmentSlot = new string[6];
 
-        equippedHead = PlayerPrefs.GetString("equippedHead");
-        equippedTorso = PlayerPrefs.GetString("equippedTorso");
-        equippedLeftArm = PlayerPrefs.GetString("equippedLeftArm");
-        equippedRightArm = PlayerPrefs.GetString("equippedRightArm");
-        equippedLeftLeg = PlayerPrefs.GetString("equippedLeftLeg");
-        equippedRightLeg = PlayerPrefs.GetString("equippedRightLeg");
+        equipmentSlot[(int)EQUIP_SLOT.EQUIP_HEAD] = PlayerPrefs.GetString("equippedHead");
+        equipmentSlot[(int)EQUIP_SLOT.EQUIP_TORSO] = PlayerPrefs.GetString("equippedTorso");
+        equipmentSlot[(int)EQUIP_SLOT.EQUIP_LA] = PlayerPrefs.GetString("equippedLeftArm");
+        equipmentSlot[(int)EQUIP_SLOT.EQUIP_RA] = PlayerPrefs.GetString("equippedRightArm");
+        equipmentSlot[(int)EQUIP_SLOT.EQUIP_LL] = PlayerPrefs.GetString("equippedLeftLeg");
+        equipmentSlot[(int)EQUIP_SLOT.EQUIP_RL] = PlayerPrefs.GetString("equippedRightLeg");
+    }
+
+    public enum EQUIP_SLOT
+    {
+        EQUIP_HEAD,
+        EQUIP_TORSO,
+        EQUIP_LA,
+        EQUIP_RA,
+        EQUIP_LL,
+        EQUIP_RL,
+
+        EQUIP_END
     }
 
     public string name;
     public int currency;
 
-    public string equippedHead;
-    public string equippedTorso;
-    public string equippedLeftArm;
-    public string equippedRightArm;
-    public string equippedLeftLeg;
-    public string equippedRightLeg;
+    public string[] equipmentSlot;
 
     private List<string> inventory;     // list of names of parts in Inventory
     [SerializeField]

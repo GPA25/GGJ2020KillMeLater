@@ -23,12 +23,12 @@ public class SignUpManager : MonoBehaviour
 
     public void SaveNewPlayer()
     {
-        PlayerData.Instance.equippedHead = "Base Head";
-        PlayerData.Instance.equippedTorso = "Base Torso";
-        PlayerData.Instance.equippedLeftArm = "Base Arm";
-        PlayerData.Instance.equippedRightArm = "Base Arm";
-        PlayerData.Instance.equippedLeftLeg = "Base Arm";
-        PlayerData.Instance.equippedRightLeg = "Base Arm";
+        PlayerData.Instance.equipmentSlot[0] = "Base Head";
+        PlayerData.Instance.equipmentSlot[1] = "Base Torso";
+        PlayerData.Instance.equipmentSlot[2] = "Base Arm";
+        PlayerData.Instance.equipmentSlot[3] = "Base Arm";
+        PlayerData.Instance.equipmentSlot[4] = "Base Arm";
+        PlayerData.Instance.equipmentSlot[5] = "Base Arm";
 
         PlayerPrefs.SetString("equippedHead", "Base Head");
         PlayerPrefs.SetString("equippedTorso", "Base Torso");
