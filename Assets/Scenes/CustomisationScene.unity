@@ -193,16 +193,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b496dae0e8cd0a54886cce47586e8324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RColor: {r: 0, g: 0, b: 0, a: 1}
+  SRColor: {r: 0.2509804, g: 0.47058824, b: 0.77254903, a: 1}
+  URColor: {r: 0.94509804, g: 0.101960786, b: 0.5921569, a: 1}
   prefabObj: {fileID: 8851710608856841871, guid: 1b9c07bf4c53a7c4f809617c088ae0bf,
     type: 3}
   characterDisplay: {fileID: 11701889}
   highlightPrefab: {fileID: 6239023514688540850, guid: d3ffe33ee48a4624dad92b805dd63f9d,
     type: 3}
   rareIndicatorPrefab: {fileID: 5938470562580757081, guid: 6c543100a8194ad48ab7dc8003dd6501,
-    type: 3}
-  superRareIndicatorPrefab: {fileID: 596130735660708965, guid: 80f127365b35be94495dfd4b3d7bca75,
-    type: 3}
-  ultraRareIndicatorPrefab: {fileID: 1038366385677687784, guid: c1e6f8a59f82e824a859bff00bc9a031,
     type: 3}
   currencyText: {fileID: 1231701135}
   headContentDisplay: {fileID: 1010112308}

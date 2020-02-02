@@ -5,12 +5,17 @@ using UnityEngine.UI;
 
 public class CustomizationManager : MonoBehaviour
 {
+    [SerializeField]
+    private Color RColor;
+    [SerializeField]
+    private Color SRColor;
+    [SerializeField]
+    private Color URColor;
+
     public GameObject prefabObj;
     public Transform characterDisplay;
     public GameObject highlightPrefab;
     public GameObject rareIndicatorPrefab;
-    public GameObject superRareIndicatorPrefab;
-    public GameObject ultraRareIndicatorPrefab;
     public Text currencyText;
 
     public Transform headContentDisplay;
@@ -63,6 +68,7 @@ public class CustomizationManager : MonoBehaviour
         highlightPrefab.transform.parent = partName.transform;
         highlightPrefab.transform.localScale = new Vector3(1, 1, 1);
         highlightPrefab.transform.localPosition = new Vector3(0, 0, 1);
+        highlightPrefab.transform.parent = partName.transform.root;
 
         if (selectedFromEquippedIndex < (int)PlayerData.EQUIP_SLOT.EQUIP_END)
         {
@@ -82,6 +88,7 @@ public class CustomizationManager : MonoBehaviour
         highlightPrefab.transform.parent = equipmentSlots[slotIndex].transform;
         highlightPrefab.transform.localScale = new Vector3(1, 1, 1);
         highlightPrefab.transform.localPosition = new Vector3(0, 0, 1);
+        highlightPrefab.transform.parent = equipmentSlots[selectedFromEquippedIndex].transform.root;
 
         if (selectedFromInventory != null)
         {
@@ -100,8 +107,10 @@ public class CustomizationManager : MonoBehaviour
         if(selectedFromInventory != null)
         {
             PartData partData = PartsTable.instance.GetPartData(selectedFromInventory.name);
-            PlayerData.instance.currency += partData.price;
+            PlayerData.Instance.EarnCurrency(partData.price);
             currencyText.text = PlayerData.instance.currency.ToString();
+            PlayerData.instance.RemoveItem(selectedFromInventory.name);
+            PlayerData.Instance.SaveInventoryAndCurrencyToPlayerPrefs();
 
             highlightPrefab.transform.parent = null;
             Destroy(selectedFromInventory);
@@ -112,6 +121,9 @@ public class CustomizationManager : MonoBehaviour
 
     void SwapParts()
     {
+        Transform indicator1 = selectedFromInventory.transform.GetChild(0);
+        Transform indicator2 = equipmentSlots[selectedFromEquippedIndex].transform.GetChild(0).transform.GetChild(0);
+
         Sprite tempoSprite = equipmentSlots[selectedFromEquippedIndex].transform.GetChild(0).GetComponent<Image>().sprite;
         equipmentSlots[selectedFromEquippedIndex].transform.GetChild(0).GetComponent<Image>().sprite = selectedFromInventory.GetComponent<Image>().sprite;
         selectedFromInventory.GetComponent<Image>().sprite = tempoSprite;
@@ -119,15 +131,59 @@ public class CustomizationManager : MonoBehaviour
         equipmentSlots[selectedFromEquippedIndex].transform.GetChild(0).name = selectedFromInventory.name;
         selectedFromInventory.name = tempoName;
 
+        //selectedFromInventory.transform.GetChild(0);
+        //equipmentSlots[selectedFromEquippedIndex].transform.GetChild(0).transform.GetChild(0);
+
         PlayerData.Instance.AddInventoryItem(PlayerData.instance.equipmentSlot[selectedFromEquippedIndex]);
+
         PlayerData.instance.equipmentSlot[selectedFromEquippedIndex] = equipmentSlots[selectedFromEquippedIndex].transform.GetChild(0).name;
+        PlayerData.Instance.RemoveItem(equipmentSlots[selectedFromEquippedIndex].transform.GetChild(0).name);
+
+        PlayerData.Instance.SaveInventoryAndCurrencyToPlayerPrefs();
 
         string[] equippedLimbs = { PlayerData.instance.equipmentSlot[2], PlayerData.instance.equipmentSlot[3], PlayerData.instance.equipmentSlot[4], PlayerData.instance.equipmentSlot[5] };
         displayingCharac.Init(PlayerData.instance.equipmentSlot[0], PlayerData.instance.equipmentSlot[1], equippedLimbs);
 
+        // re-set indicators
+        SetTextAndColor(indicator1.GetComponent<Text>(), (BasePart.RARITY)(PartsTable.Instance.GetPartData(selectedFromInventory.name).rarity));
+        SetTextAndColor(indicator2.GetComponent<Text>(), (BasePart.RARITY)(PartsTable.Instance.GetPartData(equipmentSlots[selectedFromEquippedIndex].transform.GetChild(0).name).rarity));
+
         selectedFromInventory = null;
         selectedFromEquippedIndex = (int)PlayerData.EQUIP_SLOT.EQUIP_END;
         highlightPrefab.SetActive(false);
+    }
+
+    private void CreateIndicatorFor(GameObject go, PartData part)
+    {
+        GameObject indicator = Instantiate(rareIndicatorPrefab);
+        SetTextAndColor(indicator.GetComponent<Text>(), (BasePart.RARITY)(part.rarity));
+
+
+        indicator.GetComponent<RectTransform>().SetParent(go.transform);
+        indicator.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 1);
+        indicator.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+    }
+
+    private void SetTextAndColor(Text indicator, BasePart.RARITY rarity)
+    {
+        switch (rarity)
+        {
+            case BasePart.RARITY.RARITY_RARE:
+                indicator.GetComponent<Text>().text = "R";
+                indicator.GetComponent<Text>().color = RColor;
+                break;
+            case BasePart.RARITY.RARITY_SUPER_RARE:
+                indicator.GetComponent<Text>().text = "SR";
+                indicator.GetComponent<Text>().color = SRColor;
+                break;
+            case BasePart.RARITY.RARITY_ULTRA_RARE:
+                indicator.GetComponent<Text>().text = "UR";
+                indicator.GetComponent<Text>().color = URColor;
+                break;
+
+            default:
+                break;
+        }
     }
 
     void LoadInventory()
@@ -174,24 +230,7 @@ public class CustomizationManager : MonoBehaviour
             go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
 
             GameObject indicator = null;
-            switch ((BasePart.RARITY)(data.rarity))
-            {
-                case BasePart.RARITY.RARITY_RARE:
-                    indicator = Instantiate(rareIndicatorPrefab);
-                    break;
-                case BasePart.RARITY.RARITY_SUPER_RARE:
-                    indicator = Instantiate(superRareIndicatorPrefab);
-                    break;
-                case BasePart.RARITY.RARITY_ULTRA_RARE:
-                    indicator = Instantiate(ultraRareIndicatorPrefab);
-                    break;
-
-                default:
-                    break;
-            }
-            indicator.GetComponent<RectTransform>().SetParent(go.transform);
-            indicator.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 1);
-            indicator.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            CreateIndicatorFor(go, data);
         }
     }
 
@@ -251,24 +290,7 @@ public class CustomizationManager : MonoBehaviour
             go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
 
             GameObject indicator = null;
-            switch ((BasePart.RARITY)(data.rarity))
-            {
-                case BasePart.RARITY.RARITY_RARE:
-                    indicator = Instantiate(rareIndicatorPrefab);
-                    break;
-                case BasePart.RARITY.RARITY_SUPER_RARE:
-                    indicator = Instantiate(superRareIndicatorPrefab);
-                    break;
-                case BasePart.RARITY.RARITY_ULTRA_RARE:
-                    indicator = Instantiate(ultraRareIndicatorPrefab);
-                    break;
-
-                default:
-                    break;
-            }
-            indicator.GetComponent<RectTransform>().SetParent(go.transform);
-            indicator.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 1);
-            indicator.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            CreateIndicatorFor(go, data);
         }
     }
 
@@ -289,24 +311,7 @@ public class CustomizationManager : MonoBehaviour
             go.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
 
             GameObject indicator = null;
-            switch ((BasePart.RARITY)(data.rarity))
-            {
-                case BasePart.RARITY.RARITY_RARE:
-                    indicator = Instantiate(rareIndicatorPrefab);
-                    break;
-                case BasePart.RARITY.RARITY_SUPER_RARE:
-                    indicator = Instantiate(superRareIndicatorPrefab);
-                    break;
-                case BasePart.RARITY.RARITY_ULTRA_RARE:
-                    indicator = Instantiate(ultraRareIndicatorPrefab);
-                    break;
-
-                default:
-                    break;
-            }
-            indicator.GetComponent<RectTransform>().SetParent(go.transform);
-            indicator.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 1);
-            indicator.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            CreateIndicatorFor(go, data);
         }
         //{//head slot
             

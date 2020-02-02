@@ -22,7 +22,7 @@ public class PlayerData : MonoBehaviour
         DontDestroyOnLoad(this);
 
         name = PlayerPrefs.GetString("name");
-        currency = PlayerPrefs.GetInt("currency");
+        currency = PlayerPrefs.GetInt("currency", 0);
         equipmentSlot = new string[6];
 
         equipmentSlot[(int)EQUIP_SLOT.EQUIP_HEAD] = PlayerPrefs.GetString("equippedHead", "Base Head");
@@ -43,6 +43,18 @@ public class PlayerData : MonoBehaviour
         EQUIP_RL,
 
         EQUIP_END
+    }
+
+    public void EarnCurrency(int amt)
+    {
+        currency += amt;
+        PlayerPrefs.SetInt("currency", currency);
+        PlayerPrefs.Save();
+    }
+
+    public void RemoveItem(string partName)
+    {
+        inventory.Remove(partName);
     }
 
     public string name;
@@ -75,6 +87,13 @@ public class PlayerData : MonoBehaviour
                 PlayerPrefs.SetString("inventory_" + i, "");
             }
         }
+
+        PlayerPrefs.GetString("equippedHead", equipmentSlot[(int)EQUIP_SLOT.EQUIP_HEAD]);
+        PlayerPrefs.GetString("equippedTorso", equipmentSlot[(int)EQUIP_SLOT.EQUIP_TORSO]);
+        PlayerPrefs.GetString("equippedLeftArm", equipmentSlot[(int)EQUIP_SLOT.EQUIP_LA]);
+        PlayerPrefs.GetString("equippedRightArm", equipmentSlot[(int)EQUIP_SLOT.EQUIP_RA]);
+        PlayerPrefs.GetString("equippedLeftLeg", equipmentSlot[(int)EQUIP_SLOT.EQUIP_LL]);
+        PlayerPrefs.GetString("equippedRightLeg", equipmentSlot[(int)EQUIP_SLOT.EQUIP_RL]);
 
         Debug.Log("Inventory Saved.");
         PlayerPrefs.Save();

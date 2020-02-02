@@ -27,8 +27,8 @@ public class SignUpManager : MonoBehaviour
         PlayerData.Instance.equipmentSlot[1] = "Base Torso";
         PlayerData.Instance.equipmentSlot[2] = "Base Arm";
         PlayerData.Instance.equipmentSlot[3] = "Base Arm";
-        PlayerData.Instance.equipmentSlot[4] = "Base Arm";
-        PlayerData.Instance.equipmentSlot[5] = "Base Arm";
+        PlayerData.Instance.equipmentSlot[4] = "Base Leg";
+        PlayerData.Instance.equipmentSlot[5] = "Base Leg";
 
         PlayerPrefs.SetString("equippedHead", "Base Head");
         PlayerPrefs.SetString("equippedTorso", "Base Torso");

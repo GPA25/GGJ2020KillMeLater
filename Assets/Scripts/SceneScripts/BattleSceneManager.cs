@@ -25,13 +25,13 @@ public class BattleSceneManager : MonoBehaviour
         {
             if (player != null && player.GetComponent<BaseAI>().isAlive)
             {
-                PlayerData.instance.currency += 100;
+                PlayerData.Instance.EarnCurrency(100);
                 SceneManager.LoadScene("WinScene");
             }
             else
             {
+                PlayerData.Instance.EarnCurrency(10);
                 SceneManager.LoadScene("LoseScene");
-                PlayerData.instance.currency += 10;
             }
         }
     }

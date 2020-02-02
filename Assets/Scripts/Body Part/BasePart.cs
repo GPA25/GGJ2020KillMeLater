@@ -112,6 +112,7 @@ public class BasePart : MonoBehaviour
                 break;
 
             case LIMB_TYPE.LIMB_ARM:
+                Debug.Log(name);
                 this.GetComponent<ArmPart>().name = name;
                 this.GetComponent<ArmPart>().attackSpeed = partData.attackSpeed;
                 this.GetComponent<ArmPart>().attackDelay = partData.armAttackDelay;
