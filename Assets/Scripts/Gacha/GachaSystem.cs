@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class GachaSystem : MonoBehaviour
 {
-    [SerializeField]
-    private float rateR = 0.75f;
+    //[SerializeField]
+    //private float rateR = 0.75f;
     [SerializeField]
     private float rateSR = 0.24f;
     [SerializeField]
     private float rateUR = 0.01f;
+    [SerializeField]
+    private float guaranteedUR = 0.03f;
 
     private int numSummons = 0;
 
@@ -197,7 +199,7 @@ public class GachaSystem : MonoBehaviour
 
     private void SummonAnim()
     {
-        //gachaRarity = RandomGachaNoGuarantee();
+        gachaRarity = summonList[numSummons - 1].rarity;    // get next summon
         // start animation sequence
         animator.StartGachaSequence(gachaRarity);
     }
@@ -243,7 +245,7 @@ public class GachaSystem : MonoBehaviour
     private BasePart.RARITY RandomGachaGuaranteeSR()
     {
         float roll = Random.Range(0f, 1f);
-        if (roll <= rateUR)
+        if (roll <= guaranteedUR)
         {
             Debug.Log("UR");
             return BasePart.RARITY.RARITY_ULTRA_RARE;

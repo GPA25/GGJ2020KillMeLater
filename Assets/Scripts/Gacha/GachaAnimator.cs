@@ -113,6 +113,8 @@ public class GachaAnimator : MonoBehaviour
         // load the corresponding rarity
         currentPanel.gameObject.SetActive(false);
         currentPanel = panelR.transform;
+
+        Debug.Log("rarity: " + rarity);
         switch (rarity)
         {
             case BasePart.RARITY.RARITY_RARE:

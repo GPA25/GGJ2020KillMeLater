@@ -134,7 +134,7 @@
       "fileName": "Leg/knee sox",
       "price": 120,
       "rarity": 0,
-      "flavorText": "High sox.",
+      "flavorText": "kneeee soooox.",
       "partType": 3,
       "moveSpeed": 10.0
     },
@@ -161,11 +161,11 @@
       "armAttackDelay": 2.0
     },
     {
-      "name": "Johnathon",
+      "name": "Johnathon from HR",
       "fileName": "Head/johnathon from hr",
       "price": 200,
       "rarity": 0,
-      "flavorText": "Furries have invaded our world, run",
+      "flavorText": "'Furries have invaded our world, run'\n'Yea we don't talk to him either'",
       "partType": 0
     },
     {
@@ -375,6 +375,14 @@
       "damageMult": 1.2,
       "attackSpeedMult": 1.8,
       "torsoAttackDelay": 0.7
+    },
+    {
+      "name": "Me IRL",
+      "fileName": "Head/me_irl",
+      "price": 200,
+      "rarity": 2,
+      "flavorText": "The carefully excavated head of the game devs.",
+      "partType": 0
     }
   ]
 }

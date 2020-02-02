@@ -90,6 +90,8 @@ public class BasePart : MonoBehaviour
             break;
         }
 
+        go.GetComponent<BasePart>().rarity = (BasePart.RARITY)(partData.rarity);
+
         return go.GetComponent<BasePart>();
     }
 }
