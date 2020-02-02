@@ -397,6 +397,23 @@
       "rarity": 2,
       "flavorText": "The carefully excavated head of the game devs.",
       "partType": 0
+    },
+    {
+      "name": "Goddess of Beauty",
+      "fileName": "Head/goddess of beauty",
+      "price": 400,
+      "rarity": 2,
+      "flavorText": "A stunning rendition that puts Rembrandt to shame.",
+      "partType": 0
+    },
+    {
+      "name": "Harimau Beer",
+      "fileName": "Leg/tiger beer",
+      "price": 180,
+      "rarity": 1,
+      "flavorText": "Break a leg and have a beer.",
+      "partType": 3,
+      "moveSpeed": 3.0
     }
   ]
 }
