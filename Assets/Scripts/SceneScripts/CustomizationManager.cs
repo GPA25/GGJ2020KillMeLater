@@ -20,7 +20,7 @@ public class CustomizationManager : MonoBehaviour
     public List<BasePart> limbList = new List<BasePart>();
 
     GameObject selectedFromInventory;
-    int selectedFromEquippedIndex;
+    int selectedFromEquippedIndex = (int)BasePart.LIMB_TYPE.LIMB_END;
     Character displayingCharac;
 
     // Start is called before the first frame update
