@@ -11,6 +11,8 @@ public class MainMenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Random.seed = (int)System.DateTime.Now.Ticks;
+
         Character charac = Instantiate(characterPrefab);
         charac.InitRandom();
         charac.transform.parent = characterPlacement1.transform;
