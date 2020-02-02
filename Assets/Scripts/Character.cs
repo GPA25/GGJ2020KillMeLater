@@ -22,12 +22,12 @@ public class Character : MonoBehaviour
 
     public void Init(string _head, string _torso, string[] limbNameArray)
     {
-        head.LoadTexture(_head);
-        torso.LoadTexture(_torso);
+        head.LoadTexture(PartsTable.instance.GetPartData(_head).fileName);
+        torso.LoadTexture(PartsTable.instance.GetPartData(_torso).fileName);
 
         for(int i = 0; i < limbNameArray.Length; ++i)
         {
-            l_AttachedLimbs[i].LoadTexture(limbNameArray[i]);
+            l_AttachedLimbs[i].LoadTexture(PartsTable.instance.GetPartData(limbNameArray[i]).fileName);
         }
     }
 }

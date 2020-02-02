@@ -35,6 +35,9 @@ public class CustomizationManager : MonoBehaviour
         go.transform.localPosition = Vector3.zero;
         Character charac = go.GetComponent<Character>();
 
+        string[] equippedLimbs = {PlayerData.instance.equippedLeftArm, PlayerData.instance.equippedRightArm, PlayerData.instance.equippedLeftLeg, PlayerData.instance.equippedRightLeg};
+        charac.Init(PlayerData.instance.equippedHead, PlayerData.instance.equippedTorso, equippedLimbs);
+
         LoadAllItems();
         
         LoadEquippedItems();
@@ -93,16 +96,77 @@ public class CustomizationManager : MonoBehaviour
 
     void LoadEquippedItems()
     {
-        PlayerData.instance.equippedHead = "Fish Head";
-        PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equippedHead);
-        GameObject go = new GameObject(); //Create the GameObject
-        go.name = data.name;
-        Button btn = go.AddComponent<Button>();
-        btn.onClick.AddListener(() => SelectFromInventory(go.name));
-        Image img = go.AddComponent<Image>(); //Add the Image Component script
-        Texture2D tex = Resources.Load<Texture2D>("Textures/" + data.fileName);
-        img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
-        go.SetActive(true); //Activate the GameObject
-        go.GetComponent<RectTransform>().SetParent(headSlot);
+        {//head slot
+            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equippedHead);
+            GameObject go = new GameObject(); //Create the GameObject
+            go.name = data.name;
+            Image img = go.AddComponent<Image>(); //Add the Image Component script
+            Texture2D tex = Resources.Load<Texture2D>("Textures/" + data.fileName);
+            img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+            go.SetActive(true); //Activate the GameObject
+            go.GetComponent<RectTransform>().SetParent(headSlot);
+            go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            go.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+        }
+        {//torso slot
+            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equippedTorso);
+            GameObject go = new GameObject(); //Create the GameObject
+            go.name = data.name;
+            Image img = go.AddComponent<Image>(); //Add the Image Component script
+            Texture2D tex = Resources.Load<Texture2D>("Textures/" + data.fileName);
+            img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+            go.SetActive(true); //Activate the GameObject
+            go.GetComponent<RectTransform>().SetParent(torsoSlot);
+            go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            go.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+        }
+        {//leftArm slot
+            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equippedLeftArm);
+            GameObject go = new GameObject(); //Create the GameObject
+            go.name = data.name;
+            Image img = go.AddComponent<Image>(); //Add the Image Component script
+            Texture2D tex = Resources.Load<Texture2D>("Textures/" + data.fileName);
+            img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+            go.SetActive(true); //Activate the GameObject
+            go.GetComponent<RectTransform>().SetParent(leftArmSlot);
+            go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            go.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+        }
+        {//rightArm slot
+            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equippedRightArm);
+            GameObject go = new GameObject(); //Create the GameObject
+            go.name = data.name;
+            Image img = go.AddComponent<Image>(); //Add the Image Component script
+            Texture2D tex = Resources.Load<Texture2D>("Textures/" + data.fileName);
+            img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+            go.SetActive(true); //Activate the GameObject
+            go.GetComponent<RectTransform>().SetParent(rightArmSlot);
+            go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            go.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+        }
+        {//leftLeg slot
+            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equippedLeftLeg);
+            GameObject go = new GameObject(); //Create the GameObject
+            go.name = data.name;
+            Image img = go.AddComponent<Image>(); //Add the Image Component script
+            Texture2D tex = Resources.Load<Texture2D>("Textures/" + data.fileName);
+            img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+            go.SetActive(true); //Activate the GameObject
+            go.GetComponent<RectTransform>().SetParent(leftLegSlot);
+            go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            go.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+        }
+        {//rightLeg slot
+            PartData data = PartsTable.instance.GetPartData(PlayerData.instance.equippedRightLeg);
+            GameObject go = new GameObject(); //Create the GameObject
+            go.name = data.name;
+            Image img = go.AddComponent<Image>(); //Add the Image Component script
+            Texture2D tex = Resources.Load<Texture2D>("Textures/" + data.fileName);
+            img.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+            go.SetActive(true); //Activate the GameObject
+            go.GetComponent<RectTransform>().SetParent(rightLegSlot);
+            go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            go.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+        }
     }
 }

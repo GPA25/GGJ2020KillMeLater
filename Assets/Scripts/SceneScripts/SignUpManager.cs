@@ -23,19 +23,19 @@ public class SignUpManager : MonoBehaviour
 
     public void LoadNextScene(string sceneName)
     {
-        PlayerData.Instance.equippedHead = "TestHead";
-        PlayerData.Instance.equippedTorso = "TestTorso";
-        PlayerData.Instance.equippedLeftArm = "TestArm";
-        PlayerData.Instance.equippedRightArm = "TestArm";
-        PlayerData.Instance.equippedLeftLeg = "TestLeg";
-        PlayerData.Instance.equippedRightLeg = "TestLeg";
+        PlayerData.Instance.equippedHead = "Base Head";
+        PlayerData.Instance.equippedTorso = "Base Torso";
+        PlayerData.Instance.equippedLeftArm = "Base Arm";
+        PlayerData.Instance.equippedRightArm = "Base Arm";
+        PlayerData.Instance.equippedLeftLeg = "Base Arm";
+        PlayerData.Instance.equippedRightLeg = "Base Arm";
 
-        PlayerPrefs.SetString("equippedHead", "TestHead");
-        PlayerPrefs.SetString("equippedTorso", "TestTorso");
-        PlayerPrefs.SetString("equippedLeftArm", "TestArm");
-        PlayerPrefs.SetString("equippedRightArm", "TestArm");
-        PlayerPrefs.SetString("equippedLeftLeg", "TestLeg");
-        PlayerPrefs.SetString("equippedRightLeg", "TestLeg");
+        PlayerPrefs.SetString("equippedHead", "Base Head");
+        PlayerPrefs.SetString("equippedTorso", "Base Torso");
+        PlayerPrefs.SetString("equippedLeftArm", "Base Arm");
+        PlayerPrefs.SetString("equippedRightArm", "Base Arm");
+        PlayerPrefs.SetString("equippedLeftLeg", "Base Leg");
+        PlayerPrefs.SetString("equippedRightLeg", "Base Leg");
 
         PlayerPrefs.SetString("name", nameInputField.text);
 
