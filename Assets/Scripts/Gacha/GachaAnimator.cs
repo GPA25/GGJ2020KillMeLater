@@ -37,6 +37,8 @@ public class GachaAnimator : MonoBehaviour
     private GameObject doneButton;
     [SerializeField]
     private GameObject gachaButton;
+    [SerializeField]
+    private GameObject skipButton;
 
     private Vector3 initialPanelScale;
     private Transform currentPanel;
@@ -150,11 +152,19 @@ public class GachaAnimator : MonoBehaviour
 
     public void StartSummonSequence(Transform summonedPart, bool isSingleSummon)
     {
-        StartCoroutine(SummonAnimation(summonedPart, isSingleSummon));
+        summonAnimation = SummonAnimation(summonedPart, isSingleSummon);
+        StartCoroutine(summonAnimation);
     }
 
+    private IEnumerator summonAnimation = null;
+    private Transform animatingPart;
+    private bool isSingleSummon;
     private IEnumerator SummonAnimation(Transform part, bool isSingleSummon)
     {
+        skipButton.SetActive(true);
+        animatingPart = part;
+        this.isSingleSummon = isSingleSummon;
+
         gachaButton.SetActive(false);
         part.position -= new Vector3(0f, 10f, 0f);
 
@@ -166,17 +176,37 @@ public class GachaAnimator : MonoBehaviour
         }
         part.position = Vector3.zero;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.8f);
+
+        skipButton.SetActive(false);
+
+        yield return EndGachaAnimation();
+    }
+
+    public void SkipGachaAnimation()
+    {
+        StopCoroutine(summonAnimation);
+        summonAnimation = null;
+        StartCoroutine(EndGachaAnimation());
+    }
+
+    private IEnumerator EndGachaAnimation()
+    {
+        skipButton.SetActive(false);
+
+        // set to position
+        animatingPart.position = Vector3.zero;
 
         // set flavor text & name
         flavorTextBg.SetActive(true);
         flavorText.gameObject.SetActive(true);
         nameText.gameObject.SetActive(true);
 
-        PartData partData = PartsTable.Instance.GetPartData(part.GetComponent<BasePart>().name);
+        PartData partData = PartsTable.Instance.GetPartData(animatingPart.GetComponent<BasePart>().name);
         flavorText.text = "\"" + partData.flavorText + "\"";
         nameText.text = partData.name;
 
+        yield return new WaitForSeconds(0.5f);
 
         if (isSingleSummon)
             doneButton.SetActive(true);

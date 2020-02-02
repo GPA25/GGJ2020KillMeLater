@@ -122,7 +122,7 @@ public class PlayerData : MonoBehaviour
             string item = PlayerPrefs.GetString("inventory_" + i, "");
             if (!string.IsNullOrEmpty(item))
             {
-                //inventory.Add(item);
+                inventory.Add(item);
                 Debug.Log("Inventory: " + item);
             }
         }
