@@ -29,6 +29,9 @@ public class GachaSystem : MonoBehaviour
     private GameObject nameText;
 
     [SerializeField]
+    private GameObject summonFailText;
+
+    [SerializeField]
     private ParticleSystem particleSystemR;
     [SerializeField]
     private ParticleSystem particleSystemSR;
@@ -47,6 +50,7 @@ public class GachaSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        summonFailText.SetActive(false);
         Random.InitState((int)System.DateTime.Now.Ticks);
         summonList = new List<BasePart>();
     }
@@ -192,8 +196,17 @@ public class GachaSystem : MonoBehaviour
         }
         else
         {
+            StartCoroutine(ShowError());
             Debug.Log("Inventory full");
+            
         }
+    }
+
+    private IEnumerator ShowError()
+    {
+        summonFailText.SetActive(true);
+        yield return new WaitForSeconds(10f);
+        summonFailText.SetActive(false);
     }
 
     private void SummonAnim()

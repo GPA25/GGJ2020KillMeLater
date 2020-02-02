@@ -38,6 +38,7 @@ public class SignUpManager : MonoBehaviour
         PlayerPrefs.SetString("equippedRightLeg", "Base Leg");
 
         PlayerPrefs.SetString("name", nameInputField.text);
+        PlayerPrefs.SetInt("currency", 5000);
 
         PlayerPrefs.Save();
 
