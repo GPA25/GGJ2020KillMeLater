@@ -11,7 +11,7 @@
       "attackSpeed": 1.0,
       "recoveryTime": 1.0,
       "armAttackDelay": 1.0,
-      "knockbackStrength": 1.0
+      "knockbackStrength": 2.0
     },
     {
       "name": "Base Leg",
@@ -46,7 +46,7 @@
     {
       "name": "Muscle",
       "fileName": "Arm/muscle",
-      "price": 200,
+      "price": 180,
       "rarity": 1,
       "flavorText": "A champion arm wrestler.",
       "partType": 2,
@@ -60,7 +60,7 @@
     {
       "name": "Skelebone",
       "fileName": "Arm/skele arm",
-      "price": 200,
+      "price": 50,
       "rarity": 1,
       "flavorText": "A skeleton that survived decomposition.",
       "partType": 2,
@@ -69,7 +69,7 @@
       "attackSpeed": 3.0,
       "recoveryTime": 3.0,
       "armAttackDelay": 0.2,
-      "knockbackStrength": 0.8
+      "knockbackStrength": 1.0
     },
     {
       "name": "Stump",
@@ -80,24 +80,24 @@
       "partType": 2,
       "damage": 4,
       "windupTime": 0.5,
-      "attackSpeed": 0.5,
-      "recoveryTime": 0.5,
-      "armAttackDelay": 0.5,
-      "knockbackStrength": 2.0
+      "attackSpeed": 0.8,
+      "recoveryTime": 0.2,
+      "armAttackDelay": 1.5,
+      "knockbackStrength": 1.6
     },
     {
       "name": "Zombie Arm",
       "fileName": "Arm/zombie arm",
-      "price": 25,
+      "price": 10,
       "rarity": 0,
       "flavorText": "An arm that is currently undergoing decomposition.",
       "partType": 2,
       "damage": 6,
       "windupTime": 0.1,
-      "attackSpeed": 2.0,
-      "recoveryTime": 0.1,
+      "attackSpeed": 1.0,
+      "recoveryTime": 0.5,
       "armAttackDelay": 2.0,
-      "knockbackStrength": 1.5
+      "knockbackStrength": 2.5
     },
     {
       "name": "Fish Head",
@@ -118,7 +118,7 @@
     {
       "name": "Banana Leg",
       "fileName": "Leg/banana",
-      "price": 400,
+      "price": 420,
       "rarity": 2,
       "flavorText": "An extremely rare banana. Congratulations!",
       "partType": 3,
@@ -127,11 +127,11 @@
     {
       "name": "Chicken Leg",
       "fileName": "Leg/chicken",
-      "price": 500,
-      "rarity": 2,
+      "price": 210,
+      "rarity": 1,
       "flavorText": "Used to get lots of chicks back in the day.",
       "partType": 3,
-      "moveSpeed": 12.0
+      "moveSpeed": 5.0
     },
     {
       "name": "Knee Socks",
@@ -140,35 +140,35 @@
       "rarity": 0,
       "flavorText": "kneeee soooox.",
       "partType": 3,
-      "moveSpeed": 10.0
+      "moveSpeed": 2.0
     },
     {
       "name": "Stockings",
       "fileName": "Leg/stockin",
-      "price": 200,
-      "rarity": 1,
+      "price": 450,
+      "rarity": 2,
       "flavorText": "She walks like Rihanna.",
       "partType": 3,
-      "moveSpeed": 5.0
+      "moveSpeed": 10.0
     },
     {
       "name": "Minecraft Arm",
       "fileName": "Arm/minecraft arm",
-      "price": 50,
+      "price": 30,
       "rarity": 0,
       "flavorText": "Trees arent the only thing this arm will be punching",
       "partType": 2,
       "damage": 2,
-      "windupTime": 1,
-      "attackSpeed": 1,
-      "recoveryTime": 1,
-      "armAttackDelay": 1,
-      "knockbackStrength": 1.0
+      "windupTime": 0.2,
+      "attackSpeed": 1.3,
+      "recoveryTime": 0.5,
+      "armAttackDelay": 2.0,
+      "knockbackStrength": 2.0
     },
     {
       "name": "Johnathon from HR",
       "fileName": "Head/johnathon from hr",
-      "price": 25,
+      "price": 40,
       "rarity": 0,
       "flavorText": "'Furries have invaded our world, run'\n'Yea we don't talk to him either'",
       "partType": 0
@@ -176,12 +176,12 @@
     {
       "name": "Titties",
       "fileName": "Torso/titty",
-      "price": 200,
+      "price": 220,
       "rarity": 1,
       "flavorText": "Bada-Bing Bada-Bong.",
       "partType": 1,
       "mass": 1.5,
-      "moveSpeedMult": 1,
+      "moveSpeedMult": 0.9,
       "damageMult": 1.5,
       "attackSpeedMult": 0.9,
       "torsoAttackDelay": 1.3
@@ -189,11 +189,11 @@
     {
       "name": "Skeleg",
       "fileName": "Leg/skele leg",
-      "price": 250,
+      "price": 50,
       "rarity": 1,
       "flavorText": "We used to give you 2 of these, but the other was taken by a dog.",
       "partType": 3,
-      "moveSpeed": 4.5
+      "moveSpeed": 8.0
     },
     {
       "name": "Birb",
@@ -210,7 +210,7 @@
       "rarity": 1,
       "flavorText": "Not all upgrades have to be bigger.",
       "partType": 1,
-      "mass": 2,
+      "mass": 1.6,
       "moveSpeedMult": 1.4,
       "damageMult": 1.4,
       "attackSpeedMult": 1.5,
@@ -219,21 +219,21 @@
     {
       "name": "Tentacle",
       "fileName": "Arm/tentacle",
-      "price": 50,
+      "price": 25,
       "rarity": 0,
       "flavorText": "The remnants of a tasty octopus.",
       "partType": 2,
       "damage": 15,
-      "windupTime": 0.5,
-      "attackSpeed": 1.5,
-      "recoveryTime": 1.5,
-      "armAttackDelay": 2,
-      "knockbackStrength": 1.0
+      "windupTime": 0.4,
+      "attackSpeed": 1.1,
+      "recoveryTime": 0.3,
+      "armAttackDelay": 1.8,
+      "knockbackStrength": 2.5
     },
     {
-      "name": "Skelbody",
+      "name": "Skelebody",
       "fileName": "Torso/fucked up skelly",
-      "price": 25,
+      "price": 40,
       "rarity": 0,
       "flavorText": "A bad case of scoliosis, this man had.",
       "partType": 1,
@@ -246,95 +246,95 @@
     {
       "name": "Chandelure",
       "fileName": "Arm/chandelure",
-      "price": 200,
+      "price": 150,
       "rarity": 1,
       "flavorText": "sppo0o0oky",
       "partType": 2,
       "damage": 14,
-      "windupTime": 0.1,
-      "attackSpeed": 5,
-      "recoveryTime": 0.1,
-      "armAttackDelay": 1,
-      "knockbackStrength": 5
+      "windupTime": 0.3,
+      "attackSpeed": 1.5,
+      "recoveryTime": 0.3,
+      "armAttackDelay": 2.1,
+      "knockbackStrength": 4
     },
     {
       "name": "Slime",
       "fileName": "Arm/slime",
-      "price": 50,
+      "price": 10,
       "rarity": 0,
       "flavorText": "Unpleasant to the touch.",
       "partType": 2,
       "damage": 11,
-      "windupTime": 10,
-      "attackSpeed": 10,
-      "recoveryTime": 10,
+      "windupTime": 100,
+      "attackSpeed": 100,
+      "recoveryTime": 100,
       "armAttackDelay": 0.0,
-      "knockbackStrength": 0.05
+      "knockbackStrength": 1
     },
     {
       "name": "Paw",
       "fileName": "Arm/paw",
-      "price": 300,
+      "price": 500,
       "rarity": 2,
       "flavorText": "The sharp claws of an aggressive pawster.",
       "partType": 2,
       "damage": 5,
-      "windupTime": 1,
-      "attackSpeed": 0.2,
-      "recoveryTime": 1,
-      "armAttackDelay": 1,
-      "knockbackStrength": 6
+      "windupTime": 0.5,
+      "attackSpeed": 1.6,
+      "recoveryTime": 0.5,
+      "armAttackDelay": 0.5,
+      "knockbackStrength": 4.5
     },
     {
       "name": "Neon Sign",
       "fileName": "Arm/neon",
-      "price": 25,
+      "price": 100,
       "rarity": 0,
       "flavorText": "People pay well for entertainment.",
       "partType": 2,
       "damage": 2,
-      "windupTime": 0.5,
+      "windupTime": 0.8,
       "attackSpeed": 1.0,
-      "recoveryTime": 0.5,
+      "recoveryTime": 0.8,
       "armAttackDelay": 0.2,
-      "knockbackStrength": 4.0
+      "knockbackStrength": 2.5
     },
     {
       "name": "Normal",
       "fileName": "Arm/normal",
-      "price": 1000,
+      "price": 50,
       "rarity": 0,
       "flavorText": "You can't get any more normal than normal.",
       "partType": 2,
       "damage": 5,
-      "windupTime": 1.0,
+      "windupTime": 0.5,
       "attackSpeed": 1.0,
-      "recoveryTime": 1.0,
+      "recoveryTime": 0.5,
       "armAttackDelay": 1.0,
-      "knockbackStrength": 1.0
+      "knockbackStrength": 2.0
     },
     {
       "name": "Leaf",
       "fileName": "Arm/leaf",
-      "price": 1,
+      "price": 15,
       "rarity": 0,
       "flavorText": "A caterpillar did this leaf arm no good.",
       "partType": 2,
       "damage": 3,
-      "windupTime": 0.5,
-      "attackSpeed": 0.5,
+      "windupTime": 0.2,
+      "attackSpeed": 1.1,
       "recoveryTime": 0.5,
       "armAttackDelay": 0.5,
-      "knockbackStrength": 3.0
+      "knockbackStrength": 2.0
     },
     {
       "name": "Peg Leg",
       "fileName": "Leg/pegleg",
-      "price": 150,
+      "price": 160,
       "rarity": 1,
       "flavorText": "A pirate lost his leg twice for you to have this.",
       "partType": 3,
-      "moveSpeed": 4
+      "moveSpeed": 3.5
     },
     {
       "name": "Bambody",
@@ -343,7 +343,7 @@
       "rarity": 0,
       "flavorText": "The Bamboozler.",
       "partType": 1,
-      "mass": 0.8,
+      "mass": 1.2,
       "moveSpeedMult": 0.9,
       "damageMult": 1.2,
       "attackSpeedMult": 0.8,
@@ -356,7 +356,7 @@
       "rarity": 0,
       "flavorText": "The glass is sturdy and waterproof.",
       "partType": 1,
-      "mass": 1,
+      "mass": 1.1,
       "moveSpeedMult": 0.7,
       "damageMult": 1.0,
       "attackSpeedMult": 1.3,
@@ -369,7 +369,7 @@
       "rarity": 1,
       "flavorText": "STOP",
       "partType": 1,
-      "mass": 1.5,
+      "mass": 1.6,
       "moveSpeedMult": 0.2,
       "damageMult": 2.0,
       "attackSpeedMult": 0.6,
@@ -391,15 +391,15 @@
     {
       "name": "Me IRL",
       "fileName": "Head/me_irl",
-      "price": 10000,
+      "price": 700,
       "rarity": 2,
-      "flavorText": "The carefully excavated head of the game devs. Do some rolls let how our heads did",
+      "flavorText": "The carefully excavated head of the game devs.",
       "partType": 0
     },
     {
       "name": "Goddess of Beauty",
       "fileName": "Head/goddess of beauty",
-      "price": 450,
+      "price": 700,
       "rarity": 2,
       "flavorText": "A stunning rendition that puts Rembrandt to shame.",
       "partType": 0
@@ -411,7 +411,7 @@
       "rarity": 1,
       "flavorText": "Break a leg and have a beer.",
       "partType": 3,
-      "moveSpeed": 5.0
+      "moveSpeed": 2.5
     }
   ]
 }
