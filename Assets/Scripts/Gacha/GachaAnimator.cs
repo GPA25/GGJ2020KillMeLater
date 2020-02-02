@@ -176,7 +176,7 @@ public class GachaAnimator : MonoBehaviour
         }
         part.position = Vector3.zero;
 
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.3f);
 
         skipButton.SetActive(false);
 
@@ -206,7 +206,7 @@ public class GachaAnimator : MonoBehaviour
         flavorText.text = "\"" + partData.flavorText + "\"";
         nameText.text = partData.name;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         if (isSingleSummon)
             doneButton.SetActive(true);
