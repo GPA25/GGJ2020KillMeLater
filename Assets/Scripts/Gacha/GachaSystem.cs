@@ -40,19 +40,37 @@ public class GachaSystem : MonoBehaviour
     private bool gachaEnded = false;     // start the next gacha
     private bool isSingleSummon = false;
 
-    private List<Transform> tenSummon;  // list for storing parts from ten summon
+    private List<BasePart> summonList;  // list for storing parts from the summons
 
     // Start is called before the first frame update
     void Start()
     {
         Random.InitState((int)System.DateTime.Now.Ticks);
-        tenSummon = new List<Transform>();
+        summonList = new List<BasePart>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private BasePart Roll(bool isGuarantee)
+    {
+        if (isGuarantee)
+            gachaRarity = RandomGachaGuaranteeSR();
+        else
+            gachaRarity = RandomGachaNoGuarantee();
+
+        List<PartData> parts = PartsTable.Instance.GetPartsByRarity(gachaRarity);
+        int roll = Random.Range(0, parts.Count);
+        BasePart partGO = BasePart.Create(parts[roll].name);
+
+        // ADD TO INVENTORY
+        PlayerData.Instance.AddInventoryItem(parts[roll].name);
+        Debug.Log("Roll: " + parts[roll].name);
+
+        return partGO;
     }
 
     public void GachaRoll()
@@ -63,24 +81,13 @@ public class GachaSystem : MonoBehaviour
             {
                 numSummons--;
 
-                // ROLL FOR THE PART HERE
-                List<PartData> parts = PartsTable.Instance.GetPartsByRarity(gachaRarity);
-                int roll = Random.Range(0, parts.Count);
-                BasePart partGO = BasePart.Create(parts[roll].name);
+                //BasePart partGO = Roll();
+                // get next part
+                BasePart partGO = summonList[numSummons];   // start taking from back of List
+                partGO.gameObject.SetActive(true);
+                gachaRarity = partGO.rarity;
                 partGO.transform.localScale = new Vector3(0.45f, 0.45f, 0.45f);
 
-                // ADD TO INVENTORY
-                PlayerData.Instance.AddInventoryItem(parts[roll].name);
-                Debug.Log("Roll: " + parts[roll].name);
-
-                if (!isSingleSummon) {
-                    tenSummon.Add(partGO.transform);
-                }
-                else
-                {
-                    // SAVE TO INVENTORY
-                    PlayerData.Instance.SaveInventoryToPlayerPrefs();
-                }
                 animator.StartSummonSequence(partGO.transform, isSingleSummon);
                 switch (gachaRarity)
                 {
@@ -104,7 +111,7 @@ public class GachaSystem : MonoBehaviour
             {
                 if (!isSingleSummon)
                 {
-                    tenSummon[9 - numSummons].gameObject.SetActive(false);
+                    summonList[numSummons].gameObject.SetActive(false);
                 }
                 gachaEnded = false;
 
@@ -128,18 +135,18 @@ public class GachaSystem : MonoBehaviour
                 flavorText.SetActive(false);
                 nameText.SetActive(false);
 
-                Summon();
+                SummonAnim();
             }
         }
         else if (!isSingleSummon)
         {
-            // show all 10 summons
-            for (int i = 0; i < 10; i++)
+            // show all summons
+            for (int i = 0; i < summonList.Count; i++)
             {
-                tenSummon[i].position = summonPositions[i];
-                tenSummon[i].gameObject.SetActive(true);
+                summonList[i].transform.position = summonPositions[summonList.Count - 1 - i];
+                summonList[i].gameObject.SetActive(true);
                 // resize to be smaller to fit screen
-                tenSummon[i].localScale = new Vector3(0.15f, 0.15f, 0.15f);
+                summonList[i].transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
             }
             doneButton.SetActive(true);
 
@@ -169,17 +176,18 @@ public class GachaSystem : MonoBehaviour
         }
     }
 
-    public void SingleSummon()
+    public void DoGachaSummon(int numSummon)
     {
-        if (PlayerData.Instance.CheckInventoryCapacityRemaining(1))
+        if (PlayerData.Instance.CheckInventoryCapacityRemaining(numSummon))
         {
-            numSummons = 1;
-            Summon();
-            isSingleSummon = true;
+            numSummons = numSummon;
+            isSingleSummon = numSummon == 1;
             foreach (GameObject go in buttonsToHide)
             {
                 go.SetActive(false);
             }
+            DoGachaRolls();
+            SummonAnim();
         }
         else
         {
@@ -187,28 +195,29 @@ public class GachaSystem : MonoBehaviour
         }
     }
 
-    private void Summon()
+    private void SummonAnim()
     {
-        gachaRarity = RandomGachaNoGuarantee();
+        //gachaRarity = RandomGachaNoGuarantee();
         // start animation sequence
         animator.StartGachaSequence(gachaRarity);
     }
 
-    public void TenSummon()
+    private void DoGachaRolls()
     {
-        if (PlayerData.Instance.CheckInventoryCapacityRemaining(10))
+        int guaranteedSRIdx = -1;
+        if (numSummons >= 10)   // jic
         {
-            numSummons = 10;
-            Summon();
-            foreach (GameObject go in buttonsToHide)
-            {
-                go.SetActive(false);
-            }
+            guaranteedSRIdx = Random.Range(0, numSummons);
         }
-        else
+        for (int i = 0; i < numSummons; i++)
         {
-            Debug.Log("Inventory full");
+            // roll next part to be summoned + save to inventory
+            BasePart partGO = Roll(i == guaranteedSRIdx);
+            partGO.gameObject.SetActive(false); // disable first
+            summonList.Add(partGO);
         }
+
+        PlayerData.Instance.SaveInventoryToPlayerPrefs();
     }
 
     private BasePart.RARITY RandomGachaNoGuarantee()
@@ -228,6 +237,21 @@ public class GachaSystem : MonoBehaviour
         {
             Debug.Log("R");
             return BasePart.RARITY.RARITY_RARE;
+        }
+    }
+
+    private BasePart.RARITY RandomGachaGuaranteeSR()
+    {
+        float roll = Random.Range(0f, 1f);
+        if (roll <= rateUR)
+        {
+            Debug.Log("UR");
+            return BasePart.RARITY.RARITY_ULTRA_RARE;
+        }
+        else
+        {
+            Debug.Log("SR");
+            return BasePart.RARITY.RARITY_SUPER_RARE;
         }
     }
 }
