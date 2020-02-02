@@ -12,6 +12,8 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(this.GetComponent<Rigidbody2D>())
+        this.GetComponent<Rigidbody2D>().mass = torso.mass;
     }
 
     // Update is called once per frame

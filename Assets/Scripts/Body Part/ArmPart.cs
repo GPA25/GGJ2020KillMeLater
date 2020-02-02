@@ -22,6 +22,8 @@ public class ArmPart : BasePart
     // Range of the arm
     public float atkRange = 1.0f;
 
+    public float knockback = 1.0f;
+
     override public void LoadTexture(string filename)
     {
         Texture2D tex = Resources.Load<Texture2D>("Textures/" + filename);
@@ -40,11 +42,11 @@ public class ArmPart : BasePart
 
                 if (dir.x < 0)
                 {
-                    collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1.0f, 1.0f) * damage, ForceMode2D.Impulse);
+                    collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1.0f, 1.0f) * knockback, ForceMode2D.Impulse);
                 }
                 else
                 {
-                    collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(1.0f, 1.0f) * damage, ForceMode2D.Impulse);
+                    collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(1.0f, 1.0f) * knockback, ForceMode2D.Impulse);
                 }
 
             }

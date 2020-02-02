@@ -18,6 +18,8 @@ public class BaseTorso : BasePart
     // How Long before the next attack
     public float atkDelay = 1.0f;
 
+    public float mass = 0.1f;
+
     void Awake()
     {
     }

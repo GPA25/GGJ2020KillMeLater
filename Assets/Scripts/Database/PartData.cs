@@ -25,6 +25,7 @@ public class PartData
     public float damageMult;
     public float attackSpeedMult;
     public float torsoAttackDelay;
+    public float torsoMass;
     // Leg
     public float moveSpeed;
     // Arm
