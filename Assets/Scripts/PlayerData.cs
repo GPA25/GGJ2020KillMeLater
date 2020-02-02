@@ -42,14 +42,82 @@ public class PlayerData : MonoBehaviour
     public string equippedLeftLeg;
     public string equippedRightLeg;
 
-    List<BaseTorso> ownedTorsoList;
-    List<ArmPart> ownedArmList;
-    List<LegPart> ownedLegList;
+    private List<string> inventory;     // list of names of parts in Inventory
+    [SerializeField]
+    private int maxInventorySize = 30;  // temporary
+
+    public List<string> GetInventory()
+    {
+        return inventory;
+    }
+
+    public void SaveInventoryToPlayerPrefs()
+    {
+        PlayerPrefs.SetInt("inventorySize", inventory.Count);
+
+        for (int i = 0; i < maxInventorySize; i++)
+        {
+            if (i < inventory.Count)    // inventory item
+            {
+                PlayerPrefs.SetString("inventory_" + i, inventory[i]);
+            }
+            else    // blank slot
+            {
+                PlayerPrefs.SetString("inventory_" + i, "");
+            }
+        }
+
+        Debug.Log("Inventory Saved.");
+        PlayerPrefs.Save();
+    }
+
+    private bool IsInventoryFull()
+    {
+        return inventory.Count == maxInventorySize;
+    }
+
+    public bool CheckInventoryCapacityRemaining(int count)
+    {
+        return ((inventory.Count + count) <= maxInventorySize);
+    }
+
+    public bool AddInventoryItem(string newItem)
+    {
+        if (IsInventoryFull())
+        {
+            Debug.Log("Inventory full!");
+            return false;
+        }
+
+        inventory.Add(newItem);
+        return true;
+    }
+
+    public void SwapInventoryItemWithEquip(int slotId, string prevEquipItem)
+    {
+        inventory[slotId] = prevEquipItem;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        ReadInventoryFromPlayerPrefs();
+    }
+
+    private void ReadInventoryFromPlayerPrefs()
+    {
+        inventory = new List<string>();
+
+        int invSize = PlayerPrefs.GetInt("inventorySize", inventory.Count);
+        for (int i = 0; i < maxInventorySize; i++)
+        {
+            string item = PlayerPrefs.GetString("inventory_" + i, "");
+            if (!string.IsNullOrEmpty(item))
+            {
+                inventory.Add(item);
+                Debug.Log("Inventory: " + item);
+            }
+        }
     }
 
     // Update is called once per frame

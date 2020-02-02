@@ -63,15 +63,23 @@ public class GachaSystem : MonoBehaviour
             {
                 numSummons--;
 
+                // ROLL FOR THE PART HERE
                 List<PartData> parts = PartsTable.Instance.GetPartsByRarity(gachaRarity);
                 int roll = Random.Range(0, parts.Count);
                 BasePart partGO = BasePart.Create(parts[roll].name);
                 partGO.transform.localScale = new Vector3(0.45f, 0.45f, 0.45f);
+
+                // ADD TO INVENTORY
+                PlayerData.Instance.AddInventoryItem(parts[roll].name);
+                Debug.Log("Roll: " + parts[roll].name);
+
                 if (!isSingleSummon) {
                     tenSummon.Add(partGO.transform);
                 }
                 else
                 {
+                    // SAVE TO INVENTORY
+                    PlayerData.Instance.SaveInventoryToPlayerPrefs();
                 }
                 animator.StartSummonSequence(partGO.transform, isSingleSummon);
                 switch (gachaRarity)
@@ -89,9 +97,6 @@ public class GachaSystem : MonoBehaviour
                         particleSystemUR.Play();
                         break;
                 }
-
-
-                Debug.Log("Roll: " + parts[roll].name);
 
                 gachaEnded = true;
             }
@@ -154,12 +159,19 @@ public class GachaSystem : MonoBehaviour
                     particleSystemUR.gameObject.SetActive(false);
                     break;
             }
+
+            // turn off text
+            flavorText.SetActive(false);
+            nameText.SetActive(false);
+
+            // SAVE TO INVENTORY
+            PlayerData.Instance.SaveInventoryToPlayerPrefs();
         }
     }
 
     public void SingleSummon()
     {
-        if (CheckInventory(1))
+        if (PlayerData.Instance.CheckInventoryCapacityRemaining(1))
         {
             numSummons = 1;
             Summon();
@@ -184,7 +196,7 @@ public class GachaSystem : MonoBehaviour
 
     public void TenSummon()
     {
-        if (CheckInventory(10))
+        if (PlayerData.Instance.CheckInventoryCapacityRemaining(10))
         {
             numSummons = 10;
             Summon();
@@ -197,13 +209,6 @@ public class GachaSystem : MonoBehaviour
         {
             Debug.Log("Inventory full");
         }
-    }
-
-    private bool CheckInventory(int numSlotsNeeded)
-    {
-        // check if player has enough inventory slots
-        
-        return true;
     }
 
     private BasePart.RARITY RandomGachaNoGuarantee()
@@ -224,10 +229,5 @@ public class GachaSystem : MonoBehaviour
             Debug.Log("R");
             return BasePart.RARITY.RARITY_RARE;
         }
-    }
-
-    private BasePart RandomGachaGuarantee()
-    {
-        return null;
     }
 }

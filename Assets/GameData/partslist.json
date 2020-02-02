@@ -134,7 +134,7 @@
       "fileName": "Leg/knee sox",
       "price": 120,
       "rarity": 0,
-      "flavorText": "High socks.",
+      "flavorText": "High sox.",
       "partType": 3,
       "moveSpeed": 10.0
     },
@@ -161,11 +161,11 @@
       "armAttackDelay": 2.0
     },
     {
-      "name": "Cat",
+      "name": "Johnathon",
       "fileName": "Head/johnathon from hr",
       "price": 200,
       "rarity": 0,
-      "flavorText": "A cat from Cats.",
+      "flavorText": "Furries have invaded our world, run",
       "partType": 0
     },
     {
@@ -320,7 +320,7 @@
       "fileName": "Leg/pegleg",
       "price": 20,
       "rarity": 1,
-      "flavorText": "A pirate lost his leg twice for you to have this",
+      "flavorText": "A pirate lost his leg twice for you to have this.",
       "partType": 3,
       "moveSpeed": 3.0
     },
@@ -329,7 +329,7 @@
       "fileName": "Torso/bamboo",
       "price": 30,
       "rarity": 0,
-      "flavorText": "The bamboo gave up an 'o' to be a body.",
+      "flavorText": "The Bamboozler.",
       "partType": 1,
       "health": 80,
       "moveSpeedMult": 0.9,

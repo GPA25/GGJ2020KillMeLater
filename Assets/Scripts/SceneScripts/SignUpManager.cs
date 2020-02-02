@@ -21,7 +21,7 @@ public class SignUpManager : MonoBehaviour
         nextSceneButton.SetActive(nameInputField.text.Length != 0);
     }
 
-    public void LoadNextScene(string sceneName)
+    public void SaveNewPlayer()
     {
         PlayerData.Instance.equippedHead = "Base Head";
         PlayerData.Instance.equippedTorso = "Base Torso";
@@ -42,6 +42,5 @@ public class SignUpManager : MonoBehaviour
         PlayerPrefs.Save();
 
         PlayerData.Instance.name = nameInputField.text;
-        MySceneManager.Instance.LoadScene(sceneName);
     }
 }

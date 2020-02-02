@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class SplashScreenManager : MonoBehaviour
 {
+    [SerializeField]
+    private MySceneManager sceneManager;
+
     // Start is called before the first frame update
     void Start()
     {
         string s = PlayerPrefs.GetString("name", "");
         if(s == "")
         {
-            MySceneManager.Instance.LoadScene("SignUpScene");
+            sceneManager.LoadScene("SignUpScene");
         }
         else
         {
-            MySceneManager.Instance.LoadScene("MainMenuScene");
+            sceneManager.LoadScene("MainMenuScene");
         }
     }
 
