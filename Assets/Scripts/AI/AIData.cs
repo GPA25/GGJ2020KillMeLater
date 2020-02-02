@@ -13,7 +13,7 @@ public class AIData
             if (_instance == null)
             {
                 _instance = new AIData();
-                _instance.Start();
+                _instance.Init();
             }
 
             return _instance;
@@ -23,13 +23,14 @@ public class AIData
     // List of other AIs
     public List<BaseAI> l_AllAI = new List<BaseAI>();
 
-    private void Start()
+    public void Init()
     {
         StoreOtherAIInList();
     }
 
     public void StoreOtherAIInList()
     {
+        l_AllAI.Clear();
         foreach (BaseAI go in GameObject.FindObjectsOfType<BaseAI>())
         {
             l_AllAI.Add(go);
@@ -79,4 +80,18 @@ public class AIData
         return avgPos /= numberOfEnemies;
     }
 
+    public bool IsGameEnded()
+    {
+        int i = 0;
+        foreach (BaseAI go in l_AllAI)
+        {
+            if (go.isAlive)
+                ++i;
+        }
+
+        if (i > 1)
+            return false;
+        else
+            return true;
+    }
 }

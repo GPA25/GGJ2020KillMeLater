@@ -23,6 +23,7 @@ public class BaseAI : MonoBehaviour
     void Start()
     {
         CreateAI();
+        isAlive = true;
     }
 
     protected virtual void Update()
@@ -77,7 +78,7 @@ public class BaseAI : MonoBehaviour
 
     public void SetWindUpSpeed()
     {
-        attackState.animator.speed = ((AttackState)attackState).currArm.windUpTime;
+        attackState.animator.speed = ((AttackState)attackState).currArm.windUpTime + Random.Range(-0.1f, 0.1f);
     }
 
     public void SetAttackSpeed()
