@@ -19,19 +19,19 @@ public class PartData
     public int rarity;  // enum
     public string flavorText;
     public int partType;    // enum
+
     // Torso
-    public int health;
     public float moveSpeedMult;
-    public float damageMult;
     public float attackSpeedMult;
-    public float torsoAttackDelay;
-    public float torsoMass;
+    public float mass;
+
     // Leg
     public float moveSpeed;
+
     // Arm
-    public int damage;
     public float windupTime;
     public float attackSpeed;
     public float recoveryTime;
     public float armAttackDelay;
+    public float knockbackStrength;
 }

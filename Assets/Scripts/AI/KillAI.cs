@@ -9,8 +9,8 @@ public class KillAI : MonoBehaviour
         if(collision.transform.root != this.transform.root)
         {
             BaseAI ai = collision.GetComponent<BaseAI>();
-            ai.isAlive = false;
-           
+            if(ai)
+                ai.isAlive = false;
         }
         Debug.Log("pew");
     }

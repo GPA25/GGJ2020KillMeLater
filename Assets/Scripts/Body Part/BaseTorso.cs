@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class BaseTorso : BasePart
 {
-    public int health = 1;
-
     // Speed will be affected by this
     public float movespdMult = 1.0f;
-
-    // Damage will be affected by this
-    public float damageMult = 1.0f;
 
     // how fast the attack animation will be 
     public float atkSpdMult = 1.0f;

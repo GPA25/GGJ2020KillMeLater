@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 2751803363159072893}
   - component: {fileID: 1611542687906389103}
   - component: {fileID: 1541286851889797870}
+  - component: {fileID: 5605029484094895458}
   m_Layer: 0
   m_Name: Left Arm Display
   m_TagString: Untagged
@@ -234,6 +235,33 @@ MonoBehaviour:
   recoveryTime: 1
   attackDelay: 1
   atkRange: 1
+  knockback: 1
+--- !u!61 &5605029484094895458
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855741497524096645}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.14, y: 10.06}
+    newSize: {x: 3.38, y: 5.76}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.14, y: 10.06}
+  m_EdgeRadius: 0
 --- !u!1 &3405264049766640534
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,11 +365,10 @@ MonoBehaviour:
   flavourText: 
   rarity: 0
   limbType: 4
-  health: 1
   movespdMult: 1
-  damageMult: 1
   atkSpdMult: 1
   atkDelay: 1
+  mass: 0.1
 --- !u!1 &4799112200590396566
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,7 +774,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: efcfea0dd93c9ce418b644a337affea6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -809,6 +836,7 @@ GameObject:
   - component: {fileID: 7065996530506918733}
   - component: {fileID: 2577975338199820476}
   - component: {fileID: 3760935995111561370}
+  - component: {fileID: 2052150266084981062}
   m_Layer: 0
   m_Name: Right Arm Display
   m_TagString: Untagged
@@ -902,3 +930,30 @@ MonoBehaviour:
   recoveryTime: 1
   attackDelay: 1
   atkRange: 1
+  knockback: 1
+--- !u!61 &2052150266084981062
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8240903184791883333}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.14, y: 10.06}
+    newSize: {x: 3.38, y: 5.76}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.14, y: 10.06}
+  m_EdgeRadius: 0

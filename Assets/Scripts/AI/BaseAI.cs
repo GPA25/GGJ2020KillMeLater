@@ -29,6 +29,7 @@ public class BaseAI : MonoBehaviour
     protected virtual void Update()
     {
         AILogicHardcode();
+
         if(!isAlive)
         {
             gameObject.SetActive(false);
@@ -42,11 +43,12 @@ public class BaseAI : MonoBehaviour
             case AI_STATE.IDLE_STATE:
                 break;
             case AI_STATE.CHASE_STATE:
+                
 
                 attackDelay -= Time.deltaTime;
                 chaseState.Update(Time.deltaTime);
 
-                if (chaseState.target == null)
+                if (chaseState.target == null || !chaseState.target.GetComponent<BaseAI>().isAlive)
                     chaseState.target = AIData.Instance.GetNearestTarget(this.gameObject);
 
                 if (attackState.currArm == null)
@@ -55,7 +57,16 @@ public class BaseAI : MonoBehaviour
                 if(chaseState.target == null || attackState.currArm == null)
                     break;
 
-                if (Vector2.Distance(this.transform.root.position, chaseState.target.transform.root.position) < attackState.currArm.atkRange * 0.5)
+                if (chaseState.target.transform.position.x - chaseState.attachedObject.transform.position.x > 0.0f)
+                {
+                    chaseState.attachedObject.transform.root.localEulerAngles = new Vector3(0, 180, 0);
+                }
+                else
+                {
+                    chaseState.attachedObject.transform.root.localEulerAngles = new Vector3(0, 0, 0);
+                }
+
+                if (Vector2.Distance(this.transform.root.position, chaseState.target.transform.root.position) < 2.5f)
                 {
                     SetState(AI_STATE.ATTACK_STATE);
 
@@ -64,12 +75,6 @@ public class BaseAI : MonoBehaviour
                         attackState.Attack();
                         attackDelay = attackState.currArm.attackDelay;
                     }
-                    Debug.Log("Atk");
-                }
-
-                if (chaseState.target.transform.position.x - chaseState.attachedObject.transform.position.x > 0.0f)
-                {
-                    chaseState.attachedObject.transform.root.localEulerAngles = new Vector3(0, 180, 0);
                 }
                 break;
 

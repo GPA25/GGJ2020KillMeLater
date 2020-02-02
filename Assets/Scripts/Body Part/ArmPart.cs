@@ -20,7 +20,7 @@ public class ArmPart : BasePart
     public float attackDelay = 1.0f;
 
     // Range of the arm
-    public float atkRange = 1.0f;
+    public float atkRange = 5.0f;
 
     public float knockback = 1.0f;
 
