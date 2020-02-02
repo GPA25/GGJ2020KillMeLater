@@ -59,9 +59,10 @@ public class PlayerData : MonoBehaviour
         return inventory;
     }
 
-    public void SaveInventoryToPlayerPrefs()
+    public void SaveInventoryAndCurrencyToPlayerPrefs()
     {
         PlayerPrefs.SetInt("inventorySize", inventory.Count);
+        PlayerPrefs.SetInt("currency", currency);
 
         for (int i = 0; i < maxInventorySize; i++)
         {

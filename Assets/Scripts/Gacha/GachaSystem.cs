@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GachaSystem : MonoBehaviour
 {
-    //[SerializeField]
-    //private float rateR = 0.75f;
+    [SerializeField]
+    private int summoncost = 1000;
     [SerializeField]
     private float rateSR = 0.24f;
     [SerializeField]
@@ -177,8 +177,10 @@ public class GachaSystem : MonoBehaviour
 
     public void DoGachaSummon(int numSummon)
     {
-        if (PlayerData.Instance.CheckInventoryCapacityRemaining(numSummon))
+        if (PlayerData.Instance.CheckInventoryCapacityRemaining(numSummon) && PlayerData.Instance.currency >= summoncost * numSummon)
         {
+            PlayerData.Instance.currency -= summoncost * numSummon;
+
             numSummons = numSummon;
             isSingleSummon = numSummon == 1;
             foreach (GameObject go in buttonsToHide)
@@ -216,7 +218,7 @@ public class GachaSystem : MonoBehaviour
             summonList.Add(partGO);
         }
 
-        PlayerData.Instance.SaveInventoryToPlayerPrefs();
+        PlayerData.Instance.SaveInventoryAndCurrencyToPlayerPrefs();
     }
 
     private BasePart.RARITY RandomGachaNoGuarantee()
