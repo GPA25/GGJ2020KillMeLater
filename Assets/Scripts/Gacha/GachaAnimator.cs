@@ -27,6 +27,8 @@ public class GachaAnimator : MonoBehaviour
     private Transform zoomPoint;
 
     [SerializeField]
+    private GameObject flavorTextBg;
+    [SerializeField]
     private Text flavorText;
     [SerializeField]
     private Text nameText;
@@ -42,6 +44,7 @@ public class GachaAnimator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        flavorTextBg.SetActive(false);
         flavorText.gameObject.SetActive(false);
         nameText.gameObject.SetActive(false);
 
@@ -63,6 +66,7 @@ public class GachaAnimator : MonoBehaviour
 
     public void StartGachaSequence(BasePart.RARITY rarity)
     {
+        flavorTextBg.SetActive(false);
         flavorText.gameObject.SetActive(false);
         nameText.gameObject.SetActive(false);
 
@@ -165,6 +169,7 @@ public class GachaAnimator : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         // set flavor text & name
+        flavorTextBg.SetActive(true);
         flavorText.gameObject.SetActive(true);
         nameText.gameObject.SetActive(true);
 

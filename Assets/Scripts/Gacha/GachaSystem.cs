@@ -172,9 +172,6 @@ public class GachaSystem : MonoBehaviour
             // turn off text
             flavorText.SetActive(false);
             nameText.SetActive(false);
-
-            // SAVE TO INVENTORY
-            PlayerData.Instance.SaveInventoryToPlayerPrefs();
         }
     }
 
