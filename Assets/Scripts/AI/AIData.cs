@@ -31,6 +31,7 @@ public class AIData
     public void StoreOtherAIInList()
     {
         l_AllAI.Clear();
+
         foreach (BaseAI go in GameObject.FindObjectsOfType<BaseAI>())
         {
             l_AllAI.Add(go);
@@ -83,6 +84,9 @@ public class AIData
     public bool IsGameEnded()
     {
         int i = 0;
+
+        StoreOtherAIInList();
+
         foreach (BaseAI go in l_AllAI)
         {
             if (go.isAlive)
@@ -94,4 +98,5 @@ public class AIData
         else
             return true;
     }
+
 }

@@ -25,12 +25,12 @@ public class PlayerData : MonoBehaviour
         currency = PlayerPrefs.GetInt("currency");
         equipmentSlot = new string[6];
 
-        equipmentSlot[(int)EQUIP_SLOT.EQUIP_HEAD] = PlayerPrefs.GetString("equippedHead");
-        equipmentSlot[(int)EQUIP_SLOT.EQUIP_TORSO] = PlayerPrefs.GetString("equippedTorso");
-        equipmentSlot[(int)EQUIP_SLOT.EQUIP_LA] = PlayerPrefs.GetString("equippedLeftArm");
-        equipmentSlot[(int)EQUIP_SLOT.EQUIP_RA] = PlayerPrefs.GetString("equippedRightArm");
-        equipmentSlot[(int)EQUIP_SLOT.EQUIP_LL] = PlayerPrefs.GetString("equippedLeftLeg");
-        equipmentSlot[(int)EQUIP_SLOT.EQUIP_RL] = PlayerPrefs.GetString("equippedRightLeg");
+        equipmentSlot[(int)EQUIP_SLOT.EQUIP_HEAD] = PlayerPrefs.GetString("equippedHead", "Base Head");
+        equipmentSlot[(int)EQUIP_SLOT.EQUIP_TORSO] = PlayerPrefs.GetString("equippedTorso", "Base Torso");
+        equipmentSlot[(int)EQUIP_SLOT.EQUIP_LA] = PlayerPrefs.GetString("equippedLeftArm", "Base Arm");
+        equipmentSlot[(int)EQUIP_SLOT.EQUIP_RA] = PlayerPrefs.GetString("equippedRightArm", "Base Arm");
+        equipmentSlot[(int)EQUIP_SLOT.EQUIP_LL] = PlayerPrefs.GetString("equippedLeftLeg", "Base Leg");
+        equipmentSlot[(int)EQUIP_SLOT.EQUIP_RL] = PlayerPrefs.GetString("equippedRightLeg", "Base Leg");
     }
 
     public enum EQUIP_SLOT

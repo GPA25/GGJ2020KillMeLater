@@ -29,6 +29,10 @@ public class BaseAI : MonoBehaviour
     protected virtual void Update()
     {
         AILogicHardcode();
+        if(!isAlive)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public virtual void AILogicHardcode()
@@ -42,7 +46,14 @@ public class BaseAI : MonoBehaviour
                 attackDelay -= Time.deltaTime;
                 chaseState.Update(Time.deltaTime);
 
-                //Debug.Log(Vector2.Distance(this.transform.root.position, chaseState.target.transform.root.position));
+                if (chaseState.target == null)
+                    chaseState.target = AIData.Instance.GetNearestTarget(this.gameObject);
+
+                if (attackState.currArm == null)
+                    attackState.Attack();
+             
+                if(chaseState.target == null || attackState.currArm == null)
+                    break;
 
                 if (Vector2.Distance(this.transform.root.position, chaseState.target.transform.root.position) < attackState.currArm.atkRange * 0.5)
                 {
@@ -59,7 +70,6 @@ public class BaseAI : MonoBehaviour
                 if (chaseState.target.transform.position.x - chaseState.attachedObject.transform.position.x > 0.0f)
                 {
                     chaseState.attachedObject.transform.root.localEulerAngles = new Vector3(0, 180, 0);
-                  
                 }
                 break;
 
