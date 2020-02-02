@@ -139,7 +139,9 @@ public class CustomizationManager : MonoBehaviour
         PlayerData.instance.equipmentSlot[selectedFromEquippedIndex] = equipmentSlots[selectedFromEquippedIndex].transform.GetChild(0).name;
         PlayerData.Instance.RemoveItem(equipmentSlots[selectedFromEquippedIndex].transform.GetChild(0).name);
 
+        // save
         PlayerData.Instance.SaveInventoryAndCurrencyToPlayerPrefs();
+        PlayerData.Instance.SaveEquipment();
 
         string[] equippedLimbs = { PlayerData.instance.equipmentSlot[2], PlayerData.instance.equipmentSlot[3], PlayerData.instance.equipmentSlot[4], PlayerData.instance.equipmentSlot[5] };
         displayingCharac.Init(PlayerData.instance.equipmentSlot[0], PlayerData.instance.equipmentSlot[1], equippedLimbs);

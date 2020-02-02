@@ -17,6 +17,8 @@ public class SplashScreenManager : MonoBehaviour
         }
         else
         {
+            // load player data
+
             sceneManager.LoadScene("MainMenuScene");
         }
     }

@@ -30,7 +30,7 @@ public class BattleSceneManager : MonoBehaviour
             }
             else
             {
-                PlayerData.Instance.EarnCurrency(10);
+                PlayerData.Instance.EarnCurrency(20);
                 SceneManager.LoadScene("LoseScene");
             }
         }

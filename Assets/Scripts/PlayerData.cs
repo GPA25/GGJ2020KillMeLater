@@ -71,6 +71,18 @@ public class PlayerData : MonoBehaviour
         return inventory;
     }
 
+    public void SaveEquipment()
+    {
+        PlayerPrefs.SetString("equippedHead", equipmentSlot[(int)EQUIP_SLOT.EQUIP_HEAD]);
+        PlayerPrefs.SetString("equippedTorso", equipmentSlot[(int)EQUIP_SLOT.EQUIP_TORSO]);
+        PlayerPrefs.SetString("equippedLeftArm", equipmentSlot[(int)EQUIP_SLOT.EQUIP_LA]);
+        PlayerPrefs.SetString("equippedRightArm", equipmentSlot[(int)EQUIP_SLOT.EQUIP_RA]);
+        PlayerPrefs.SetString("equippedLeftLeg", equipmentSlot[(int)EQUIP_SLOT.EQUIP_LL]);
+        PlayerPrefs.SetString("equippedRightLeg", equipmentSlot[(int)EQUIP_SLOT.EQUIP_RL]);
+
+        PlayerPrefs.Save();
+    }
+
     public void SaveInventoryAndCurrencyToPlayerPrefs()
     {
         PlayerPrefs.SetInt("inventorySize", inventory.Count);

@@ -279,9 +279,9 @@
       "flavorText": "The sharp claws of an aggressive pawster.",
       "partType": 2,
       "damage": 5,
-      "windupTime": 0.5,
+      "windupTime": 0.35,
       "attackSpeed": 1.6,
-      "recoveryTime": 0.5,
+      "recoveryTime": 0.35,
       "armAttackDelay": 0.5,
       "knockbackStrength": 4.5
     },
@@ -391,15 +391,15 @@
     {
       "name": "Me IRL",
       "fileName": "Head/me_irl",
-      "price": 700,
+      "price": 10000,
       "rarity": 2,
-      "flavorText": "The carefully excavated head of the game devs.",
+      "flavorText": "The carefully excavated head of the game devs. Do some rolls like how our heads did.",
       "partType": 0
     },
     {
       "name": "Goddess of Beauty",
       "fileName": "Head/goddess of beauty",
-      "price": 700,
+      "price": 888,
       "rarity": 2,
       "flavorText": "A stunning rendition that puts Rembrandt to shame.",
       "partType": 0

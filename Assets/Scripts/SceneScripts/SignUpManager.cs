@@ -39,7 +39,7 @@ public class SignUpManager : MonoBehaviour
 
         PlayerPrefs.SetString("name", nameInputField.text);
         //PlayerPrefs.SetInt("currency", 5000);
-        PlayerData.Instance.EarnCurrency(5000);
+        PlayerData.Instance.EarnCurrency(10000);
 
         PlayerPrefs.Save();
 
