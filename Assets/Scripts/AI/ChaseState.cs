@@ -42,7 +42,12 @@ public class ChaseState : BaseState
         if (target != null)
         {
             if (attachedObject.GetComponent<Rigidbody2D>().velocity.y == 0)
-                this.attachedObject.transform.position = Vector2.MoveTowards(attachedObject.transform.position, target.transform.position, movementSpeed * _dt);
+            {
+                this.attachedObject.transform.position = Vector2.MoveTowards(attachedObject.transform.position, 
+                                new Vector2(target.transform.position.x, attachedObject.transform.position.y),
+                                movementSpeed * _dt);
+            
+            }
         }
     }
 

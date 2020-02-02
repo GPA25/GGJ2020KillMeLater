@@ -43,8 +43,6 @@ public class BaseAI : MonoBehaviour
             case AI_STATE.IDLE_STATE:
                 break;
             case AI_STATE.CHASE_STATE:
-                
-
                 attackDelay -= Time.deltaTime;
                 chaseState.Update(Time.deltaTime);
 
@@ -53,8 +51,10 @@ public class BaseAI : MonoBehaviour
 
                 if (attackState.currArm == null)
                     attackState.Attack();
-             
-                if(chaseState.target == null || attackState.currArm == null)
+
+                attackState.animator.speed = chaseState.movementSpeed;
+
+                if (chaseState.target == null || attackState.currArm == null)
                     break;
 
                 if (chaseState.target.transform.position.x - chaseState.attachedObject.transform.position.x > 0.0f)
@@ -93,17 +93,18 @@ public class BaseAI : MonoBehaviour
 
     public void SetWindUpSpeed()
     {
-        attackState.animator.speed = ((AttackState)attackState).currArm.windUpTime + Random.Range(-0.1f, 0.1f);
+        attackState.animator.speed = attackState.currArm.windUpTime;
+        Debug.Log(attackState.animator.speed);
     }
 
     public void SetAttackSpeed()
     {
-        attackState.animator.speed = ((AttackState)attackState).currArm.attackSpeed;
+        attackState.animator.speed = attackState.currArm.attackSpeed;
     }
 
     public void SetRecoverySpeed()
     {
-        attackState.animator.speed = ((AttackState)attackState).currArm.recoveryTime;
+        attackState.animator.speed = attackState.currArm.recoveryTime;
     }
 
     public void SetState(AI_STATE _newState)

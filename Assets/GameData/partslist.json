@@ -11,7 +11,7 @@
       "attackSpeed": 1.0,
       "recoveryTime": 1.0,
       "armAttackDelay": 1.0,
-      "knockbackStrength": 2.0
+      "knockbackStrength": 5.0
     },
     {
       "name": "Base Leg",

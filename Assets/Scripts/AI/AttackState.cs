@@ -29,6 +29,7 @@ public class AttackState : BaseState
 
     public void Attack()
     {
+        Debug.Log("atk");
         if(currArm.gameObject.name == "Right Arm Display")
         {
             animator.Play("AIRightPunchWindUp");

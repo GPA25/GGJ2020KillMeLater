@@ -42,11 +42,11 @@ public class ArmPart : BasePart
 
                 if (dir.x < 0)
                 {
-                    collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1.0f, 1.0f) * knockback, ForceMode2D.Impulse);
+                    collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1.0f, 1.0f) * knockback * 2, ForceMode2D.Impulse);
                 }
                 else
                 {
-                    collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(1.0f, 1.0f) * knockback, ForceMode2D.Impulse);
+                    collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(1.0f, 1.0f) * knockback * 2, ForceMode2D.Impulse);
                 }
 
             }
