@@ -40,94 +40,68 @@ public class BasePart : MonoBehaviour
 
         PartData partData = PartsTable.Instance.GetPartData(name);
 
+        go.AddComponent<SpriteRenderer>();
+
         switch(((LIMB_TYPE)(partData.partType)))
         {
             case LIMB_TYPE.LIMB_HEAD:
-                go.name = name;
-                go.AddComponent<SpriteRenderer>();
                 go.AddComponent<HeadPart>();
-                go.GetComponent<HeadPart>().name = name;
-                go.GetComponent<HeadPart>().LoadTexture(partData.fileName);
             break;
 
             case LIMB_TYPE.LIMB_TORSO:
-                go.name = name;
-                go.AddComponent<SpriteRenderer>();
                 go.AddComponent<BaseTorso>();
-                go.GetComponent<BaseTorso>().name = name;
-                go.GetComponent<BaseTorso>().LoadTexture(partData.fileName);
-                go.GetComponent<BaseTorso>().movespdMult = partData.moveSpeedMult;
-                go.GetComponent<BaseTorso>().atkSpdMult = partData.attackSpeedMult;
-                go.GetComponent<BaseTorso>().mass = partData.mass;
                 break;
 
             case LIMB_TYPE.LIMB_ARM:
-                go.name = name;
-                go.AddComponent<SpriteRenderer>();
                 go.AddComponent<ArmPart>();
-                go.GetComponent<ArmPart>().name = name;
-                go.GetComponent<ArmPart>().LoadTexture(partData.fileName);
-                go.GetComponent<ArmPart>().attackSpeed = partData.attackSpeed;
-                go.GetComponent<ArmPart>().attackDelay = partData.armAttackDelay;
-                go.GetComponent<ArmPart>().windUpTime = partData.windupTime;
-                go.GetComponent<ArmPart>().recoveryTime = partData.recoveryTime;
-                go.GetComponent<ArmPart>().knockback = partData.knockbackStrength;
-                go.GetComponent<ArmPart>().atkRange = 5.0f;
                 break;
 
             case LIMB_TYPE.LIMB_LEG:
-                go.name = name;
-                go.AddComponent<SpriteRenderer>();
                 go.AddComponent<LegPart>();
-                go.GetComponent<LegPart>().name = name;
-                go.GetComponent<LegPart>().LoadTexture(partData.fileName);
-                go.GetComponent<LegPart>().moveSpd = partData.moveSpeed;
                 break;
 
             default:
                 return null;
                 break;
         }
-
-        go.GetComponent<BasePart>().rarity = (BasePart.RARITY)(partData.rarity);
+        go.GetComponent<BasePart>().LoadPartData(partData);
+        go.name = partData.name;
 
         return go.GetComponent<BasePart>();
     }
 
     public void LoadPartData(PartData partData)
     {
+        this.name = partData.name;
+        this.flavourText = partData.flavorText;
+        this.limbType = (LIMB_TYPE)(partData.partType);
+        this.rarity = (RARITY)(partData.rarity);
+        this.price = partData.price;
+
+        this.LoadTexture(partData.fileName);
+
         switch (((LIMB_TYPE)(partData.partType)))
         {
             case LIMB_TYPE.LIMB_HEAD:
-                this.GetComponent<HeadPart>().name = name;
-                this.GetComponent<HeadPart>().LoadTexture(partData.fileName);
                 break;
 
             case LIMB_TYPE.LIMB_TORSO:
-                this.GetComponent<BaseTorso>().name = name;
                 this.GetComponent<BaseTorso>().movespdMult = partData.moveSpeedMult;
                 this.GetComponent<BaseTorso>().atkSpdMult = partData.attackSpeedMult;
                 this.GetComponent<BaseTorso>().mass = partData.mass;
-                this.GetComponent<BaseTorso>().LoadTexture(partData.fileName);
                 break;
 
             case LIMB_TYPE.LIMB_ARM:
-                Debug.Log(name);
-                this.GetComponent<ArmPart>().name = name;
                 this.GetComponent<ArmPart>().attackSpeed = partData.attackSpeed;
                 this.GetComponent<ArmPart>().attackDelay = partData.armAttackDelay;
                 this.GetComponent<ArmPart>().windUpTime = partData.windupTime;
                 this.GetComponent<ArmPart>().recoveryTime = partData.recoveryTime;
                 this.GetComponent<ArmPart>().knockback = partData.knockbackStrength;
                 this.GetComponent<ArmPart>().atkRange = 5.0f;
-                this.GetComponent<ArmPart>().LoadTexture(partData.fileName);
                 break;
 
             case LIMB_TYPE.LIMB_LEG:
-                this.GetComponent<LegPart>().name = name;
-                this.GetComponent<LegPart>().LoadTexture(partData.fileName);
                 this.GetComponent<LegPart>().moveSpd = partData.moveSpeed;
-                this.GetComponent<LegPart>().LoadTexture(partData.fileName);
                 break;
 
             default:

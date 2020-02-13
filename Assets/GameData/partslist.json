@@ -412,6 +412,20 @@
       "flavorText": "Break a leg and have a beer.",
       "partType": 3,
       "moveSpeed": 2.5
+    },
+	{
+      "name": "Stump grown up",
+      "fileName": "Arm/tree",
+      "price": 450,
+      "rarity": 2,
+      "flavorText": "The imps here to give you a hand ;)",
+      "partType": 2,
+      "damage": 5,
+      "windupTime": 0.3,
+      "attackSpeed": 1.2,
+      "recoveryTime": 0.5,
+      "armAttackDelay": 0.5,
+      "knockbackStrength": 3.5
     }
   ]
 }
